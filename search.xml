@@ -120,4 +120,17 @@
         <tag>JS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ES6复习-promise</title>
+    <url>2021/01/01/js/promise/ES6%E5%A4%8D%E4%B9%A0-promise/</url>
+    <content><![CDATA[<a id="more"></a>
+<h2 id="响应多个promise"><a href="#响应多个promise" class="headerlink" title="响应多个promise"></a>响应多个promise</h2><h4 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h4>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">let</span> p1 =  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">res,rej</span>)</span>&#123;</span><br><span class="line">    res(<span class="number">22</span>)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> p2 = <span class="built_in">Promise</span>.resolve(<span class="number">55</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> p3 = <span class="built_in">Promise</span>.all([p1,p2]);  <span class="comment">//会等所有promise好了 再then</span></span><br><span class="line"></span><br><span class="line">  p3.then(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(val)); <span class="comment">//true</span></span><br><span class="line">    <span class="built_in">console</span>.log(val[<span class="number">0</span>],val[<span class="number">1</span>]); <span class="comment">//22 55</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h4>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 =  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">res,rej</span>)</span>&#123;</span><br><span class="line">  res(<span class="number">22</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p2 = <span class="built_in">Promise</span>.resolve(<span class="number">55</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p3 = <span class="built_in">Promise</span>.race([p1,p2]);  <span class="comment">//返回最先promise完的那个 race后面传入的promise顺序会影响结果</span></span><br><span class="line"></span><br><span class="line">p3.then(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(val)); <span class="comment">//false</span></span><br><span class="line">  <span class="built_in">console</span>.log(val); <span class="comment">//22</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>JS</category>
+      </categories>
+      <tags>
+        <tag>JS</tag>
+      </tags>
+  </entry>
 </search>
