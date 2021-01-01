@@ -83,8 +83,7 @@
     <title>goruntine学习</title>
     <url>2021/01/01/go/goruntine%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<a id="more"></a>
-
-<h3 id="goruntine"><a href="#goruntine" class="headerlink" title="goruntine"></a>goruntine</h3><p><img src="https://upload-images.jianshu.io/upload_images/1767848-fc23b15dc52e407f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/307/format/webp" alt="goroutine" loading="lazy"><br>    1. 一个进程里面提供了很多的线程(M) 每个线程都可以处理goruntine 但是他不能直接处理 所以需要一个逻辑处理器(p)<br>    2. P如果遇到很漫长的G 那么他就会把他分离出去 在外面再开个线程(M)去单独处理他     </p>
+<h3 id="goruntine"><a href="#goruntine" class="headerlink" title="goruntine"></a>goruntine</h3><p><img src="./1.jpeg" alt="goroutine" loading="lazy"></p>
 ]]></content>
       <categories>
         <category>GO</category>
