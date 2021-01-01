@@ -1,60 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>frist</title>
-    <url>2020/12/29/frist/</url>
-    <content><![CDATA[<p>简简单单</p>
-<a id="more"></a>
-
-<h3 id="one"><a href="#one" class="headerlink" title="one"></a>one</h3><ul>
-<li>title: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:0<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔</li>
-</ul>
-<h3 id="two"><a href="#two" class="headerlink" title="two"></a>two</h3><p>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxx</p>
-<ul>
-<li>weqwe<br><img src="http://p1.music.126.net/urGNzkRkLYYqU9sWVRvLfA==/109951164284564819.jpg?param=180y180" alt="这是图片" loading="lazy"></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let a &#x3D; 1</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>杂</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>2020/12/28/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>雪</title>
-    <url>2020/12/29/%E9%9B%AA/</url>
-    <content><![CDATA[<p>来自远方的雪，从山头飒飒飘来。然后，然后就不知道写什么了。</p>
-<a id="more"></a>
-<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>来自远方的雪，从山头飒飒飘来。然后，然后就不知道写什么了。想起崔健的《蓝色的骨头》里面写的–男人越是闲着越是人缘好。 越是人缘好 让我情绪没有波动 就没有需要书写的情绪</p>
-<p>这就像是在毫无波动的海面，没有任何风暴一样。那样的海洋还是大海吗？但是充满暴风雨的海面虽然波澜壮阔，可不也害的许多船只与水手葬生海底嘛。</p>
-<p>对大海来说，他从不思考他将以何种形式存在。他任大自然在他心中随意缠绕。那我呢，是不是也该随着生活随缘的活着。</p>
-<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p>今年听到了 万能青年旅馆这支乐队 太触动人心灵了。 姬赓的词 即继承了中国古典文学 又让欧美文学化为己用 描写了时代变迁带给一代河北人的迷茫。其实，也是这个时代的迷茫。我们沉陷在无垠的电子荒原。时尚的时代使人的敏感性变弱。<br>这也让我 明白了一点。所谓古风 如果不能古为今用 那么他在文学上价值不过是狗屁。在自我营造的感动中感受所谓的美，这毫无意义。<br>我们活在这个时代 在体值的囚笼下 我们的心灵感觉比“垮掉的一代”更加“垮掉”。从上世纪20年代开始 迷茫的一代 再到垮<br>掉的一代 到现在我们算是麻木的一代吗</p>
-<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>万能青年旅馆 应该可以在将来的历史里面 代表中国21世纪10年代的一代人的心灵情结。就如同 bob dylan代表的美国60年代美国人的心灵一样。姬赓的词确实有这个实力</p>
-<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p>雪还会下，盖住时代的视野。</p>
-]]></content>
-      <categories>
-        <category>杂</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ES6复习-类</title>
     <url>2020/12/30/js/%E7%B1%BB/ES6%E5%A4%8D%E4%B9%A0-%E7%B1%BB/</url>
     <content><![CDATA[<a id="more"></a>
@@ -132,5 +78,73 @@
       <tags>
         <tag>JS</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>goruntine学习</title>
+    <url>2021/01/01/go/goruntine%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h3 id="goruntine"><a href="#goruntine" class="headerlink" title="goruntine"></a>goruntine</h3><p><img src="https://upload-images.jianshu.io/upload_images/1767848-fc23b15dc52e407f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/307/format/webp" alt="goroutine" loading="lazy"><br>    1. 一个进程里面提供了很多的线程(M) 每个线程都可以处理goruntine 但是他不能直接处理 所以需要一个逻辑处理器(p)<br>    2. P如果遇到很漫长的G 那么他就会把他分离出去 在外面再开个线程(M)去单独处理他     </p>
+]]></content>
+      <categories>
+        <category>GO</category>
+      </categories>
+      <tags>
+        <tag>GO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>雪</title>
+    <url>2020/12/29/%E6%9D%82/%E9%9B%AA/</url>
+    <content><![CDATA[<p>来自远方的雪，从山头飒飒飘来。然后，然后就不知道写什么了。</p>
+<a id="more"></a>
+<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>来自远方的雪，从山头飒飒飘来。然后，然后就不知道写什么了。想起崔健的《蓝色的骨头》里面写的–男人越是闲着越是人缘好。 越是人缘好 让我情绪没有波动 就没有需要书写的情绪</p>
+<p>这就像是在毫无波动的海面，没有任何风暴一样。那样的海洋还是大海吗？但是充满暴风雨的海面虽然波澜壮阔，可不也害的许多船只与水手葬生海底嘛。</p>
+<p>对大海来说，他从不思考他将以何种形式存在。他任大自然在他心中随意缠绕。那我呢，是不是也该随着生活随缘的活着。</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p>今年听到了 万能青年旅馆这支乐队 太触动人心灵了。 姬赓的词 即继承了中国古典文学 又让欧美文学化为己用 描写了时代变迁带给一代河北人的迷茫。其实，也是这个时代的迷茫。我们沉陷在无垠的电子荒原。时尚的时代使人的敏感性变弱。<br>这也让我 明白了一点。所谓古风 如果不能古为今用 那么他在文学上价值不过是狗屁。在自我营造的感动中感受所谓的美，这毫无意义。<br>我们活在这个时代 在体值的囚笼下 我们的心灵感觉比“垮掉的一代”更加“垮掉”。从上世纪20年代开始 迷茫的一代 再到垮<br>掉的一代 到现在我们算是麻木的一代吗</p>
+<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>万能青年旅馆 应该可以在将来的历史里面 代表中国21世纪10年代的一代人的心灵情结。就如同 bob dylan代表的美国60年代美国人的心灵一样。姬赓的词确实有这个实力</p>
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p>雪还会下，盖住时代的视野。</p>
+]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>frist</title>
+    <url>2020/12/29/%E6%9D%82/frist/</url>
+    <content><![CDATA[<p>简简单单</p>
+<a id="more"></a>
+
+<h3 id="one"><a href="#one" class="headerlink" title="one"></a>one</h3><ul>
+<li>title: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:0<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔</li>
+</ul>
+<h3 id="two"><a href="#two" class="headerlink" title="two"></a>two</h3><p>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxx</p>
+<ul>
+<li>weqwe<br><img src="http://p1.music.126.net/urGNzkRkLYYqU9sWVRvLfA==/109951164284564819.jpg?param=180y180" alt="这是图片" loading="lazy"></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let a &#x3D; 1</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>2020/12/28/%E6%9D%82/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
 </search>
