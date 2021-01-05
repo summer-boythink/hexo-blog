@@ -183,4 +183,61 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>vue.js是如何build出来的</title>
+    <url>2021/01/04/vue/vue-js%E6%98%AF%E5%A6%82%E4%BD%95build%E5%87%BA%E6%9D%A5%E7%9A%84/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><img src="https://ftp.bmp.ovh/imgs/2021/01/b0937cb9478b042c.jpg" loading="lazy"></p>
+<ol>
+<li><p>在package.json里面发现他build的是 scripts/build.js</p>
+</li>
+<li><p>打开build.js 发现里面有步是获取所有配置<br><img src="https://ftp.bmp.ovh/imgs/2021/01/956ff7db951831eb.jpg" loading="lazy"></p>
+</li>
+<li><p>那么他是怎么用<code>getallbuilds()</code>获取所有配置的呢？<br><img src="https://ftp.bmp.ovh/imgs/2021/01/f2080bf5e2a18e9a.jpg" loading="lazy"></p>
+<blockquote>
+<p>如图所示 他将builds这个数组每一项都用getconfig这个函数来迭代<br>而上面的getconfig其实就是将作者自己写的这些”方言配置”转换成rollup这个打包插件听的懂的这些配置</p>
+</blockquote>
+</li>
+<li><p>拿到rollup配置项后 回到builds.js 他把这些配置项放进next里面迭代 buildEntry根据不同的配置来用下面write函数生成最终文件</p>
+</li>
+</ol>
+<p><img src="https://ftp.bmp.ovh/imgs/2021/01/081bd8123aaba40d.jpg" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue入口</title>
+    <url>2021/01/05/vue/vue%E5%85%A5%E5%8F%A3/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h3 id="入口文件解读"><a href="#入口文件解读" class="headerlink" title="入口文件解读"></a>入口文件解读</h3><ol>
+<li><p>我们先找一份vue Runtime + Compiler的入口看<br><img src="https://ftp.bmp.ovh/imgs/2021/01/c61ce6ffa3fee8f7.jpg" loading="lazy"></p>
+<blockquote>
+<p>如图所示 他引入了vue 那我们跟着他看看vue到底来自哪<br>结果TM居然跟了3，4次</p>
+</blockquote>
+</li>
+<li><p>最终在 <code>core/instance/index</code>下发现了真正的vue<br><img src="https://ftp.bmp.ovh/imgs/2021/01/4ed5b2f978190730.jpg" loading="lazy"></p>
+</li>
+</ol>
+<ul>
+<li>因为vue是一个构造函数 所以我们调用的时候要new一下 </li>
+</ul>
+<ol start="3">
+<li>他下面那些<code>initMixin</code>函数是干什么的呢?<br><img src="https://ftp.bmp.ovh/imgs/2021/01/e83d2a54e8c96408.jpg" loading="lazy"></li>
+</ol>
+<p>原来是在给vue的原型添加方法 由此可见 其实vue初始化的过程就是 每一个文件不断给vue添加原型方法或者自身的方法 为什么要这么做呢？ 因为vue要生成不同版本所以要分别对待</p>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
 </search>
