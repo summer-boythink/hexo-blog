@@ -187,8 +187,7 @@
     <title>vue.js是如何build出来的</title>
     <url>2021/01/04/vue/vue-js%E6%98%AF%E5%A6%82%E4%BD%95build%E5%87%BA%E6%9D%A5%E7%9A%84/</url>
     <content><![CDATA[<a id="more"></a>
-
-<p><img src="https://ftp.bmp.ovh/imgs/2021/01/b0937cb9478b042c.jpg" loading="lazy"></p>
+<h3 id="vue-js-build的过程"><a href="#vue-js-build的过程" class="headerlink" title="vue.js build的过程"></a>vue.js build的过程</h3><p><img src="https://ftp.bmp.ovh/imgs/2021/01/b0937cb9478b042c.jpg" loading="lazy"></p>
 <ol>
 <li><p>在package.json里面发现他build的是 scripts/build.js</p>
 </li>
@@ -238,6 +237,27 @@
       </categories>
       <tags>
         <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>koa的一个坑--cookie</title>
+    <url>2021/01/08/node/koa%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91-cookie/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h4 id="关于koa里面使用cookie-or-session"><a href="#关于koa里面使用cookie-or-session" class="headerlink" title="关于koa里面使用cookie or session"></a>关于koa里面使用cookie or session</h4><ul>
+<li>前端如果用ajax <code>记得要设置允许跨域带cookie</code><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&#x27;#subdata&#x27;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                $.ajax(&#123;</span><br><span class="line">                    method:<span class="string">&quot;post&quot;</span>,</span><br><span class="line">                    url:<span class="string">&#x27;http://localhost:3000/admin/changeinfo&#x27;</span>,</span><br><span class="line">                    data:&#123;<span class="attr">id</span>:$(<span class="string">&quot;input[name=admin]&quot;</span>).val(),<span class="attr">name</span>:$(<span class="string">&#x27;input[name=name]&#x27;</span>).val(),<span class="attr">limit</span>:$(<span class="string">&quot;#status&quot;</span>).val()&#125;,</span><br><span class="line">                    dataType:<span class="string">&#x27;JSON&#x27;</span>,</span><br><span class="line">                    xhrFields: &#123;</span><br><span class="line">                      withCredentials: <span class="literal">true</span> <span class="comment">//允许跨域带Cookie</span></span><br><span class="line">                    &#125;,</span><br><span class="line">                    <span class="function"><span class="title">success</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">                        <span class="built_in">console</span>.log(data)</span><br><span class="line">                        layer.msg(<span class="string">&quot;修改成功&quot;</span>)</span><br><span class="line">                    &#125;,</span><br><span class="line">                    <span class="function"><span class="title">error</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                        alert(<span class="string">&#x27;服务器错误&#x27;</span>)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure></li>
+<li>后台如果用koa <code>Access-Control-Allow-Origin必须带域名 不能用*</code><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ctx.set(<span class="string">&quot;Access-Control-Allow-Origin&quot;</span>, <span class="string">&quot;http://localhost:8080&quot;</span>);</span><br><span class="line">ctx.set(<span class="string">&quot;Access-Control-Allow-Methods&quot;</span>, <span class="string">&quot;OPTIONS, GET, PUT, POST, DELETE&quot;</span>);</span><br><span class="line">ctx.set(<span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>, <span class="string">&#x27;x-requested-with, accept, origin, content-type&#x27;</span>);</span><br><span class="line">ctx.set(<span class="string">&#x27;Access-Control-Allow-Credentials&#x27;</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果Access-Control-Allow-Origin用*就会拿不到session</p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>node</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
       </tags>
   </entry>
 </search>
