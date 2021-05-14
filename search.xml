@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>ES6复习-类</title>
-    <url>/2020/12/30/js/%E7%B1%BB/ES6%E5%A4%8D%E4%B9%A0-%E7%B1%BB/</url>
+    <url>2020/12/30/js/%E7%B1%BB/ES6%E5%A4%8D%E4%B9%A0-%E7%B1%BB/</url>
     <content><![CDATA[<a id="more"></a>
 <h3 id="关于ES6的类从ES5构造函数中继承"><a href="#关于ES6的类从ES5构造函数中继承" class="headerlink" title="关于ES6的类从ES5构造函数中继承"></a>关于ES6的类从ES5构造函数中继承</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> A = &#123;</span><br><span class="line">  <span class="function"><span class="title">sayA</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;a&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> B = &#123;</span><br><span class="line">  <span class="function"><span class="title">sayB</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;b&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mixin</span>(<span class="params">...mixins</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> base = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  <span class="built_in">Object</span>.assign(base.prototype,...mixins);</span><br><span class="line">  <span class="keyword">return</span> base;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> <span class="keyword">extends</span> <span class="title">mixin</span>(<span class="title">B</span>,<span class="title">A</span>)</span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">c</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">    <span class="built_in">this</span>.c = c</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c = <span class="keyword">new</span> C(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(c.sayA());</span><br></pre></td></tr></table></figure>
 <ol>
@@ -28,7 +28,7 @@
   </entry>
   <entry>
     <title>ES6复习-数组</title>
-    <url>/2020/12/30/js/%E6%95%B0%E7%BB%84/ES6%E5%A4%8D%E4%B9%A0-%E6%95%B0%E7%BB%84/</url>
+    <url>2020/12/30/js/%E6%95%B0%E7%BB%84/ES6%E5%A4%8D%E4%B9%A0-%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<a id="more"></a>
 <h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><h3 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of"></a>Array.of</h3>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//ES5的痛 难以创建一个长度的数组 </span></span><br><span class="line"><span class="keyword">let</span> item = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(items.length); <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(items[<span class="number">0</span>]); <span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">let</span> A = <span class="built_in">Array</span>.of(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(A.length); <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(A[<span class="number">0</span>]); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
 <ul>
@@ -68,7 +68,7 @@
   </entry>
   <entry>
     <title>ES6复习-promise</title>
-    <url>/2021/01/01/js/promise/ES6%E5%A4%8D%E4%B9%A0-promise/</url>
+    <url>2021/01/01/js/promise/ES6%E5%A4%8D%E4%B9%A0-promise/</url>
     <content><![CDATA[<a id="more"></a>
 <h2 id="响应多个promise"><a href="#响应多个promise" class="headerlink" title="响应多个promise"></a>响应多个promise</h2><h4 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h4>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">let</span> p1 =  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">res,rej</span>)</span>&#123;</span><br><span class="line">    res(<span class="number">22</span>)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> p2 = <span class="built_in">Promise</span>.resolve(<span class="number">55</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> p3 = <span class="built_in">Promise</span>.all([p1,p2]);  <span class="comment">//会等所有promise好了 再then</span></span><br><span class="line"></span><br><span class="line">  p3.then(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(val)); <span class="comment">//true</span></span><br><span class="line">    <span class="built_in">console</span>.log(val[<span class="number">0</span>],val[<span class="number">1</span>]); <span class="comment">//22 55</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h4>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 =  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">res,rej</span>)</span>&#123;</span><br><span class="line">  res(<span class="number">22</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p2 = <span class="built_in">Promise</span>.resolve(<span class="number">55</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p3 = <span class="built_in">Promise</span>.race([p1,p2]);  <span class="comment">//返回最先promise完的那个 race后面传入的promise顺序会影响结果</span></span><br><span class="line"></span><br><span class="line">p3.then(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(val)); <span class="comment">//false</span></span><br><span class="line">  <span class="built_in">console</span>.log(val); <span class="comment">//22</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
@@ -81,7 +81,7 @@
   </entry>
   <entry>
     <title>goruntine学习</title>
-    <url>/2021/01/01/go/goruntine%E5%AD%A6%E4%B9%A0/</url>
+    <url>2021/01/01/go/goruntine%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h3 id="goruntine"><a href="#goruntine" class="headerlink" title="goruntine"></a>goruntine</h3><ol>
@@ -131,7 +131,7 @@
   </entry>
   <entry>
     <title>雪</title>
-    <url>/2020/12/29/%E6%9D%82/%E9%9B%AA/</url>
+    <url>2020/12/29/%E6%9D%82/%E9%9B%AA/</url>
     <content><![CDATA[<p>来自远方的雪，从山头飒飒飘来。然后，然后就不知道写什么了。</p>
 <a id="more"></a>
 <h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>来自远方的雪，从山头飒飒飘来。然后，然后就不知道写什么了。想起崔健的《蓝色的骨头》里面写的–男人越是闲着越是人缘好。 越是人缘好 让我情绪没有波动 就没有需要书写的情绪</p>
@@ -150,7 +150,7 @@
   </entry>
   <entry>
     <title>frist</title>
-    <url>/2020/12/29/%E6%9D%82/frist/</url>
+    <url>2020/12/29/%E6%9D%82/frist/</url>
     <content><![CDATA[<p>简简单单</p>
 <a id="more"></a>
 
@@ -171,7 +171,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2020/12/28/%E6%9D%82/hello-world/</url>
+    <url>2020/12/28/%E6%9D%82/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -185,7 +185,7 @@
   </entry>
   <entry>
     <title>vue.js是如何build出来的</title>
-    <url>/2021/01/04/vue/vue-js%E6%98%AF%E5%A6%82%E4%BD%95build%E5%87%BA%E6%9D%A5%E7%9A%84/</url>
+    <url>2021/01/04/vue/vue-js%E6%98%AF%E5%A6%82%E4%BD%95build%E5%87%BA%E6%9D%A5%E7%9A%84/</url>
     <content><![CDATA[<a id="more"></a>
 <h3 id="vue-js-build的过程"><a href="#vue-js-build的过程" class="headerlink" title="vue.js build的过程"></a>vue.js build的过程</h3><p><img src="https://ftp.bmp.ovh/imgs/2021/01/b0937cb9478b042c.jpg" loading="lazy"></p>
 <ol>
@@ -212,7 +212,7 @@
   </entry>
   <entry>
     <title>vue入口</title>
-    <url>/2021/01/05/vue/vue%E5%85%A5%E5%8F%A3/</url>
+    <url>2021/01/05/vue/vue%E5%85%A5%E5%8F%A3/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h3 id="入口文件解读"><a href="#入口文件解读" class="headerlink" title="入口文件解读"></a>入口文件解读</h3><ol>
@@ -241,7 +241,7 @@
   </entry>
   <entry>
     <title>koa的一个坑--cookie</title>
-    <url>/2021/01/08/node/koa%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91-cookie/</url>
+    <url>2021/01/08/node/koa%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91-cookie/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h4 id="关于koa里面使用cookie-or-session"><a href="#关于koa里面使用cookie-or-session" class="headerlink" title="关于koa里面使用cookie or session"></a>关于koa里面使用cookie or session</h4><ul>
@@ -262,7 +262,7 @@
   </entry>
   <entry>
     <title>没有理想的糖不伤心</title>
-    <url>/2021/01/22/%E6%9D%82/%E6%B2%A1%E6%9C%89%E7%90%86%E6%83%B3%E7%9A%84%E7%B3%96%E4%B8%8D%E4%BC%A4%E5%BF%83/</url>
+    <url>2021/01/22/%E6%9D%82/%E6%B2%A1%E6%9C%89%E7%90%86%E6%83%B3%E7%9A%84%E7%B3%96%E4%B8%8D%E4%BC%A4%E5%BF%83/</url>
     <content><![CDATA[<p>正如万青在专辑开头写到，这几年气象风物变化急剧，几人已失了魂，几人仍双眼明亮。</p>
 <a id="more"></a>
 <p>我无奈走在这个社会的规则上，忘记书籍，忘记那些写给花儿的诗歌。<br>我身体在赚钱的理想道路上裸奔，精神把阳光撕成碎片。<br>女孩在远处，笑着对我说,去与过去和解吧<br>但此处早已烟幕重重困青年<br>文字废墟，是弱者的锦旗，还是强者的堡垒？<br>愿我心中仍有代码，文学与爱。</p>
@@ -276,7 +276,7 @@
   </entry>
   <entry>
     <title>tcp模拟http请求以及响应处理</title>
-    <url>/2021/01/27/node/tcp%E6%A8%A1%E6%8B%9Fhttp%E8%AF%B7%E6%B1%82%E4%BB%A5%E5%8F%8A%E5%93%8D%E5%BA%94%E5%A4%84%E7%90%86/</url>
+    <url>2021/01/27/node/tcp%E6%A8%A1%E6%8B%9Fhttp%E8%AF%B7%E6%B1%82%E4%BB%A5%E5%8F%8A%E5%93%8D%E5%BA%94%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<a id="more"></a>
 <ol>
 <li>模拟http请求</li>
@@ -306,7 +306,7 @@
   </entry>
   <entry>
     <title>滚动的车轮,滚动的年华</title>
-    <url>/2021/02/02/%E6%9D%82/%E6%BB%9A%E5%8A%A8%E7%9A%84%E8%BD%A6%E8%BD%AE-%E6%BB%9A%E5%8A%A8%E7%9A%84%E5%B9%B4%E5%8D%8E/</url>
+    <url>2021/02/02/%E6%9D%82/%E6%BB%9A%E5%8A%A8%E7%9A%84%E8%BD%A6%E8%BD%AE-%E6%BB%9A%E5%8A%A8%E7%9A%84%E5%B9%B4%E5%8D%8E/</url>
     <content><![CDATA[<a id="more"></a>
 <h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>一年前，我依旧把文学当作理想，现在我选择了代码。我说不清这是背叛还是继承。不过，说起代码，这是高中的产物，文字则是初中的产物。代码对应着现实，理性。文学对应着浪漫，感性。当然文学也可以很现实。不过，那其实不叫现实。</p>
 <h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p>说说自己吧，尽管我现在选择代码，但我终有一天会回到文学的阵营，因为有些东西是刻在骨子里的，我天生就适合写小说，其次才是打代码。暂时离开文学因为3点，<br>1.我需要赚钱去保护我想保护的东西，现实是一坨屎，没钱的话爱与理想就会被他掩埋。<br>2.根据第一点，现在的文坛也和屎一样，有才华的人不被推崇。消费社会里面的资本在喂给大众各种复制品，残次品，以及他们生产出来的工厂明星。我从来不怀疑自己的文学才华，但是，才华好就能不被这个消费社会淹没吗？谁知道呢。所以，敲代码，靠自己技术，先站着身把钱拿了。我不要跪着赚钱。<br>3.我需要去看到真正的现实，另一个身份才能把真正的现实写到小说，而不是在象牙塔内。</p>
@@ -323,7 +323,7 @@
   </entry>
   <entry>
     <title>gee动态路由学习</title>
-    <url>/2021/04/08/go/gee%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%AD%A6%E4%B9%A0/</url>
+    <url>2021/04/08/go/gee%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h3 id="什么是动态路由"><a href="#什么是动态路由" class="headerlink" title="什么是动态路由"></a>什么是动态路由</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">   r.GET(<span class="string">&quot;/hello/:name&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gee.Context)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> k, v := <span class="keyword">range</span> c.Req.Header &#123;</span><br><span class="line">		fmt.Fprintf(c.Writer, <span class="string">&quot;Header[%q] = %q\n&quot;</span>, k, v)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">   r.Run(<span class="string">&quot;:9999&quot;</span>)</span><br></pre></td></tr></table></figure>
@@ -356,6 +356,42 @@
       </categories>
       <tags>
         <tag>GO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python的一些学习</title>
+    <url>2021/05/14/py/python%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<a id="more"></a>
+<h3 id="python的一些学习"><a href="#python的一些学习" class="headerlink" title="python的一些学习"></a>python的一些学习</h3><ol>
+<li><p>关于pycharm里面引用<code>同级目录下的包</code>发生报错<br> <img src="http://imgs-1304695318.cos.ap-shanghai.myqcloud.com/1621000591058.png" loading="lazy"></p>
+<ul>
+<li><p>这种情况产生的原因主要是因为 pycharm读取时候是以<code>打开文件的根目录开始读</code>,在这里 根目录是fastapi_learn，所以会产生报错。</p>
+</li>
+<li><p>但是报错归报错，文件<code>依旧可以运行</code>，如果v1前面在加入一些目录，反而不能运行</p>
+<h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><p>以user_api作为根目录打开即可:<br><img src="http://imgs-1304695318.cos.ap-shanghai.myqcloud.com/1621000893138.png" loading="lazy"></p>
+</li>
+</ul>
+</li>
+<li><p>requirements的运用</p>
+<h5 id="requirements的生成"><a href="#requirements的生成" class="headerlink" title="requirements的生成"></a>requirements的生成</h5><ol>
+<li><p>先安装<code>pipreqs</code></p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure></li>
+<li><p>在当前目录下运行<code>pipreqs ./ --encoding=utf8</code>自动寻找需要的包(可能会有小偏差)</p>
+<h5 id="requirements的使用"><a href="#requirements的使用" class="headerlink" title="requirements的使用"></a>requirements的使用</h5></li>
+<li><p>包在全局安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure></li>
+<li><p>包在当前目录下生成</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt -t .&#x2F;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
 </search>
