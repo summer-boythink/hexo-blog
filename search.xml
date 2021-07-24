@@ -368,7 +368,17 @@
     <url>/2021/07/19/zinx/zinx-%E5%AD%A6%E4%B9%A0-1/</url>
     <content><![CDATA[<a id="more"></a>
 
-<h2 id="a"><a href="#a" class="headerlink" title="a"></a>a</h2>]]></content>
+<h2 id="zinx0-3版本的收获"><a href="#zinx0-3版本的收获" class="headerlink" title="zinx0.3版本的收获"></a>zinx0.3版本的收获</h2><h4 id="关于面向接口编程"><a href="#关于面向接口编程" class="headerlink" title="关于面向接口编程"></a>关于面向接口编程</h4><ul>
+<li>众所周知，go是面向接口编程的，在zinx中,我加深了这一点的理解<br>首先看目录<br><img src="http://imgs-1304695318.cos.ap-shanghai.myqcloud.com/1627138738528.png" loading="lazy"><br>如同所示，ziface对于的是接口,而znet作为其的具体实现<br>例如ziface的IServer.go<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> ziface</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个服务器接口</span></span><br><span class="line"><span class="keyword">type</span> IServer <span class="keyword">interface</span> &#123;</span><br><span class="line">  <span class="comment">//启动</span></span><br><span class="line">  Start()</span><br><span class="line">  <span class="comment">//停止</span></span><br><span class="line">  Stop()</span><br><span class="line">  <span class="comment">//运行</span></span><br><span class="line">  Serve()</span><br><span class="line">  <span class="comment">//路由功能</span></span><br><span class="line">  AddRouter(router IRouter)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+定义好接口后，我们在server.go先声明一个结构体，把他作为之前接口的具体实现，然后通过NewServer来对外生成这个结构体<br><img src="http://imgs-1304695318.cos.ap-shanghai.myqcloud.com/1627139000386.png" loading="lazy"><ul>
+<li>其余接口也类似实现方式，通过一个结构体来完成具象的方法</li>
+</ul>
+</li>
+</ul>
+<h4 id="关于TCP的理解"><a href="#关于TCP的理解" class="headerlink" title="关于TCP的理解"></a>关于TCP的理解</h4><blockquote>
+<p>目前用go实现TCP的思路是如下几步</p>
+</blockquote>
+]]></content>
       <categories>
         <category>Zinx</category>
       </categories>
@@ -394,6 +404,18 @@
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二叉树的各种遍历</title>
+    <url>/2021/07/22/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/</url>
+    <content><![CDATA[<a id="more"></a>
+<h3 id="迭代方式"><a href="#迭代方式" class="headerlink" title="迭代方式"></a>迭代方式</h3>]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>二叉树</tag>
       </tags>
   </entry>
 </search>
