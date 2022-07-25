@@ -566,4 +566,32 @@
         <tag>GO</tag>
       </tags>
   </entry>
+  <entry>
+    <title>搭node开发环境，不占C盘1MB</title>
+    <url>/2022/07/25/node/%E6%90%ADnode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%EF%BC%8C%E4%B8%8D%E5%8D%A0C%E7%9B%981MB/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h3 id="安装nvm"><a href="#安装nvm" class="headerlink" title="安装nvm"></a>安装nvm</h3><p>这边建议使用，go语言写的nvm-windows</p>
+<blockquote>
+<p>url: <a href="https://github.com/coreybutler/nvm-windows">https://github.com/coreybutler/nvm-windows</a></p>
+</blockquote>
+<p>记住，exe启动选择的时候，都选自己喜欢的D盘或者别的盘的目录</p>
+<ul>
+<li>确认环境变量后,用<code>管理员权限</code>启动nvm，nvm proxy设置好代理，install node和use node</li>
+</ul>
+<p>最后,<code>node -v</code>检查</p>
+<h3 id="安装pnpm"><a href="#安装pnpm" class="headerlink" title="安装pnpm"></a>安装pnpm</h3><p><code>npm install -g pnpm</code>安装pnpm，之后，你会看到在nvm/&lt;node版本&gt;的目录下有个pnpm可执行文件,<code>pnpm -v</code>检查</p>
+<p>在环境变量添加<code>PNPM_HOME</code>,这里就是<code>nvm/&lt;node版本&gt;/</code>目录</p>
+<p>接下来，我们处理下pnpm的安装路径,<code>每一个都要，不然就放在C盘</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pnpm config <span class="built_in">set</span> store-dir <span class="string">&quot;D:\.pnpm-store&quot;</span>    <span class="comment"># pnpm全局仓库路径(类似 .git 仓库)</span></span><br><span class="line">pnpm config <span class="built_in">set</span> global-dir <span class="string">&quot;D:\nodejs\pnpm\pnpm-global&quot;</span>    <span class="comment"># pnpm全局安装路径</span></span><br><span class="line">pnpm config <span class="built_in">set</span> global-bin-dir <span class="string">&quot;D:\nodejs&quot;</span>    <span class="comment"># pnpm全局bin路径</span></span><br><span class="line">pnpm config <span class="built_in">set</span> state-dir <span class="string">&quot;D:\nodejs\pnpm&quot;</span>    <span class="comment"># pnpm创建pnpm-state.json文件的目录</span></span><br><span class="line">pnpm config <span class="built_in">set</span> cache-dir <span class="string">&quot;D:\nodejs\pnpm\cache&quot;</span>    <span class="comment"># pnpm全局缓存路径</span></span><br></pre></td></tr></table></figure>
+<p>如图所示，我这边建了个文件夹统一存放<br><img src="http://imgs-1304695318.cos.ap-shanghai.myqcloud.com/1658763468283.png" loading="lazy"></p>
+<p>最后，<code>pnpm i hexo-cli -g</code> 试一试吧</p>
+]]></content>
+      <categories>
+        <category>node</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+      </tags>
+  </entry>
 </search>
