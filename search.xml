@@ -1,87 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ES6复习-类</title>
-    <url>/2020/12/30/js/%E7%B1%BB/ES6%E5%A4%8D%E4%B9%A0-%E7%B1%BB/</url>
-    <content><![CDATA[<a id="more"></a>
-<h3 id="关于ES6的类从ES5构造函数中继承"><a href="#关于ES6的类从ES5构造函数中继承" class="headerlink" title="关于ES6的类从ES5构造函数中继承"></a>关于ES6的类从ES5构造函数中继承</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> A = &#123;</span><br><span class="line">  <span class="function"><span class="title">sayA</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;a&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> B = &#123;</span><br><span class="line">  <span class="function"><span class="title">sayB</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;b&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mixin</span>(<span class="params">...mixins</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> base = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  <span class="built_in">Object</span>.assign(base.prototype,...mixins);</span><br><span class="line">  <span class="keyword">return</span> base;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> <span class="keyword">extends</span> <span class="title">mixin</span>(<span class="title">B</span>,<span class="title">A</span>)</span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">c</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">    <span class="built_in">this</span>.c = c</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c = <span class="keyword">new</span> C(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(c.sayA());</span><br></pre></td></tr></table></figure>
-<ol>
-<li>mixin函数是精髓，他通过Object.assign<code>拷贝源对象自身的并且可枚举的属性到目标对象</code><br>在base这个构造函数上 融合了A,B两个对象的所有可枚举方法 </li>
-<li>因为用了extends 所以要用super <code>super类似call的继承，super(11) 是种限定语法 super(11)会执行父类的constructor 然后把11传进去</code></li>
-<li>extends后面的构造函数必须有[[constructor]]属性 不然会报错</li>
-</ol>
-<h3 id="由对象派生数组"><a href="#由对象派生数组" class="headerlink" title="由对象派生数组"></a>由对象派生数组</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myarr</span> <span class="keyword">extends</span> <span class="title">Array</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> color = <span class="keyword">new</span> Myarr();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>上面是ES6写法 没看懂ES5里面的问题 说派生类型的this再Array.apply之前先被调用了 所以length指向不准 </li>
-</ul>
-<h3 id="防止抽象类被new"><a href="#防止抽象类被new" class="headerlink" title="防止抽象类被new"></a>防止抽象类被new</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">new</span>.target === Shape)&#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;抽象类不能被实例化&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">extends</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">len,wid</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">super</span>()</span><br><span class="line">    <span class="built_in">this</span>.length = len;</span><br><span class="line">    <span class="built_in">this</span>.width = wid;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// let x = new Shape(); //抛错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> y = <span class="keyword">new</span> Rectangle(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(y <span class="keyword">instanceof</span> Shape);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>new.target</code> 总是能正确指向new他的那个类</li>
-</ul>
-]]></content>
-      <categories>
-        <category>JS</category>
-      </categories>
-      <tags>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ES6复习-数组</title>
-    <url>/2020/12/30/js/%E6%95%B0%E7%BB%84/ES6%E5%A4%8D%E4%B9%A0-%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<a id="more"></a>
-<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><h3 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of"></a>Array.of</h3>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//ES5的痛 难以创建一个长度的数组 </span></span><br><span class="line"><span class="keyword">let</span> item = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(items.length); <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(items[<span class="number">0</span>]); <span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">let</span> A = <span class="built_in">Array</span>.of(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(A.length); <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(A[<span class="number">0</span>]); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Array.of方便创建单元素数组</p>
-<h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from"></a>Array.from</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> helper = &#123;</span><br><span class="line">  diff : <span class="number">1</span>,</span><br><span class="line">  <span class="function"><span class="title">add</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> val + <span class="built_in">this</span>.diff;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tran</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>); <span class="comment">//&#123; &#x27;0&#x27;: 1, &#x27;1&#x27;: 2, &#x27;2&#x27;: 5 &#125;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>,helper.add,helper) <span class="comment">//因为用到helper.diff所以 第三个参数改变this</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> numbers = tran(<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>);</span><br><span class="line"><span class="built_in">console</span>.log(numbers); <span class="comment">//[ 2, 3, 6 ]</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Array.from把类数组对象变成数组</p>
-</li>
-<li><p>Array.from 也可以转换迭代器对象<code>* [Symbol.iterator]</code></p>
-</li>
-</ul>
-<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3>   <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> nums = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">122</span>,<span class="number">32</span>];</span><br><span class="line"><span class="built_in">console</span>.log(nums.find(<span class="function"><span class="params">a</span> =&gt;</span> a&gt;<span class="number">10</span>)); <span class="comment">//122</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>findIndex 同理 不过返回的是索引</p>
-<h3 id="fill"><a href="#fill" class="headerlink" title="fill"></a>fill</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">mums.fill(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(nums) <span class="comment">//[1,1,1]</span></span><br></pre></td></tr></table></figure></li>
-<li><p>替换数组每一项</p>
-<h3 id="copyWithin"><a href="#copyWithin" class="headerlink" title="copyWithin"></a>copyWithin</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">9</span>];</span><br><span class="line">nums.copyWithin(<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(nums); <span class="comment">//[ 1, 2, 1, 9 ]</span></span><br></pre></td></tr></table></figure></li>
-<li><p>从索引2(包括2)开始粘贴 从索引0开始复制 索引1结束复制</p>
-</li>
-</ul>
-<h2 id="定形数组"><a href="#定形数组" class="headerlink" title="定形数组"></a>定形数组</h2><h3 id="数组缓冲区"><a href="#数组缓冲区" class="headerlink" title="数组缓冲区"></a>数组缓冲区</h3>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">2</span>); <span class="comment">//这个Buffer共2字节</span></span><br><span class="line"><span class="built_in">console</span>.log(buffer.byteLength);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer) <span class="comment">//用来访问buffer</span></span><br><span class="line"><span class="built_in">console</span>.log(view.byteOffset);</span><br><span class="line"></span><br><span class="line">view.setInt8(<span class="number">0</span>,<span class="number">5</span>); <span class="comment">//框取一个8比特的位置 并且把5转换成8进制存入这个位置</span></span><br><span class="line">view.setInt8(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(view.getInt8(<span class="number">0</span>)); <span class="comment">//框取buffer中第一个8比特的位置 并且转换成10进制</span></span><br><span class="line"><span class="built_in">console</span>.log(view.getInt16(<span class="number">0</span>)); <span class="comment">//这个表示在内存中框16个比特 并且拿到框取的元素的第一个(也就是索引0)</span></span><br></pre></td></tr></table></figure>
-<h3 id="定形数组-1"><a href="#定形数组-1" class="headerlink" title="定形数组"></a>定形数组</h3><ul>
-<li><p>定型数组其实就是对<code>let view = new DataView(buffer)</code> 做了层封装 更加方便set(setInt8) 和 get 元素</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>(<span class="number">2</span>), <span class="comment">//框2个16byte的定型数组位置</span></span><br><span class="line">floats = <span class="keyword">new</span> <span class="built_in">Float32Array</span>([<span class="number">20.1</span>,<span class="number">33.3</span>]); <span class="comment">//框2个16byte的定型数组 索引0位置是20.1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(ints.byteLength); <span class="comment">//4</span></span><br><span class="line"><span class="built_in">console</span>.log(ints.length);</span><br><span class="line"><span class="built_in">console</span>.log(floats[<span class="number">1</span>]); <span class="comment">//33.29999923706055</span></span><br></pre></td></tr></table></figure></li>
-<li><p><code>console.log(ints.byteLength); //4</code> 因为每个int16元素表示2字节</p>
-<blockquote>
-<p>定型数组与普通数组上行为有很大差异 具体可以查 比如没有pop push 但他有set()方法可以添加元素 </p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>([<span class="number">222</span>,<span class="number">3</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(ints <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(ints)); <span class="comment">//false</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>JS</category>
-      </categories>
-      <tags>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ES6复习-promise</title>
-    <url>/2021/01/01/js/promise/ES6%E5%A4%8D%E4%B9%A0-promise/</url>
-    <content><![CDATA[<a id="more"></a>
-<h2 id="响应多个promise"><a href="#响应多个promise" class="headerlink" title="响应多个promise"></a>响应多个promise</h2><h4 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h4>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">let</span> p1 =  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">res,rej</span>)</span>&#123;</span><br><span class="line">    res(<span class="number">22</span>)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> p2 = <span class="built_in">Promise</span>.resolve(<span class="number">55</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> p3 = <span class="built_in">Promise</span>.all([p1,p2]);  <span class="comment">//会等所有promise好了 再then</span></span><br><span class="line"></span><br><span class="line">  p3.then(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(val)); <span class="comment">//true</span></span><br><span class="line">    <span class="built_in">console</span>.log(val[<span class="number">0</span>],val[<span class="number">1</span>]); <span class="comment">//22 55</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h4>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 =  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">res,rej</span>)</span>&#123;</span><br><span class="line">  res(<span class="number">22</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p2 = <span class="built_in">Promise</span>.resolve(<span class="number">55</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p3 = <span class="built_in">Promise</span>.race([p1,p2]);  <span class="comment">//返回最先promise完的那个 race后面传入的promise顺序会影响结果</span></span><br><span class="line"></span><br><span class="line">p3.then(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(val)); <span class="comment">//false</span></span><br><span class="line">  <span class="built_in">console</span>.log(val); <span class="comment">//22</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>JS</category>
-      </categories>
-      <tags>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>goruntine学习</title>
-    <url>/2021/01/01/go/goruntine%E5%AD%A6%E4%B9%A0/</url>
+    <url>/blog/2021/01/01/go/goruntine%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h3 id="goruntine"><a href="#goruntine" class="headerlink" title="goruntine"></a>goruntine</h3><ol>
@@ -130,169 +51,8 @@
       </tags>
   </entry>
   <entry>
-    <title>雪</title>
-    <url>/2020/12/29/%E6%9D%82/%E9%9B%AA/</url>
-    <content><![CDATA[<p>来自远方的雪，从山头飒飒飘来。然后，然后就不知道写什么了。</p>
-<a id="more"></a>
-<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>来自远方的雪，从山头飒飒飘来。然后，然后就不知道写什么了。想起崔健的《蓝色的骨头》里面写的–男人越是闲着越是人缘好。 越是人缘好 让我情绪没有波动 就没有需要书写的情绪</p>
-<p>这就像是在毫无波动的海面，没有任何风暴一样。那样的海洋还是大海吗？但是充满暴风雨的海面虽然波澜壮阔，可不也害的许多船只与水手葬生海底嘛。</p>
-<p>对大海来说，他从不思考他将以何种形式存在。他任大自然在他心中随意缠绕。那我呢，是不是也该随着生活随缘的活着。</p>
-<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p>今年听到了 万能青年旅馆这支乐队 太触动人心灵了。 姬赓的词 即继承了中国古典文学 又让欧美文学化为己用 描写了时代变迁带给一代河北人的迷茫。其实，也是这个时代的迷茫。我们沉陷在无垠的电子荒原。时尚的时代使人的敏感性变弱。<br>这也让我 明白了一点。所谓古风 如果不能古为今用 那么他在文学上价值不过是狗屁。在自我营造的感动中感受所谓的美，这毫无意义。<br>我们活在这个时代 在体值的囚笼下 我们的心灵感觉比“垮掉的一代”更加“垮掉”。从上世纪20年代开始 迷茫的一代 再到垮<br>掉的一代 到现在我们算是麻木的一代吗</p>
-<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>万能青年旅馆 应该可以在将来的历史里面 代表中国21世纪10年代的一代人的心灵情结。就如同 bob dylan代表的美国60年代美国人的心灵一样。姬赓的词确实有这个实力</p>
-<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p>雪还会下，盖住时代的视野。</p>
-]]></content>
-      <categories>
-        <category>杂</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>frist</title>
-    <url>/2020/12/29/%E6%9D%82/frist/</url>
-    <content><![CDATA[<p>简简单单</p>
-<a id="more"></a>
-
-<h3 id="one"><a href="#one" class="headerlink" title="one"></a>one</h3><ul>
-<li>title: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:0<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔</li>
-</ul>
-<h3 id="two"><a href="#two" class="headerlink" title="two"></a>two</h3><p>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxx</p>
-<ul>
-<li>weqwe<br><img src="http://p1.music.126.net/urGNzkRkLYYqU9sWVRvLfA==/109951164284564819.jpg?param=180y180" alt="这是图片" loading="lazy"></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let a &#x3D; 1</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>杂</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/12/28/%E6%9D%82/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>vue.js是如何build出来的</title>
-    <url>/2021/01/04/vue/vue-js%E6%98%AF%E5%A6%82%E4%BD%95build%E5%87%BA%E6%9D%A5%E7%9A%84/</url>
-    <content><![CDATA[<a id="more"></a>
-<h3 id="vue-js-build的过程"><a href="#vue-js-build的过程" class="headerlink" title="vue.js build的过程"></a>vue.js build的过程</h3><p><img src="https://ftp.bmp.ovh/imgs/2021/01/b0937cb9478b042c.jpg" loading="lazy"></p>
-<ol>
-<li><p>在package.json里面发现他build的是 scripts/build.js</p>
-</li>
-<li><p>打开build.js 发现里面有步是获取所有配置<br><img src="https://ftp.bmp.ovh/imgs/2021/01/956ff7db951831eb.jpg" loading="lazy"></p>
-</li>
-<li><p>那么他是怎么用<code>getallbuilds()</code>获取所有配置的呢？<br><img src="https://ftp.bmp.ovh/imgs/2021/01/f2080bf5e2a18e9a.jpg" loading="lazy"></p>
-<blockquote>
-<p>如图所示 他将builds这个数组每一项都用getconfig这个函数来迭代<br>而上面的getconfig其实就是将作者自己写的这些”方言配置”转换成rollup这个打包插件听的懂的这些配置</p>
-</blockquote>
-</li>
-<li><p>拿到rollup配置项后 回到builds.js 他把这些配置项放进next里面迭代 buildEntry根据不同的配置来用下面write函数生成最终文件</p>
-</li>
-</ol>
-<p><img src="https://ftp.bmp.ovh/imgs/2021/01/081bd8123aaba40d.jpg" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue入口</title>
-    <url>/2021/01/05/vue/vue%E5%85%A5%E5%8F%A3/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h3 id="入口文件解读"><a href="#入口文件解读" class="headerlink" title="入口文件解读"></a>入口文件解读</h3><ol>
-<li><p>我们先找一份vue Runtime + Compiler的入口看<br><img src="https://ftp.bmp.ovh/imgs/2021/01/c61ce6ffa3fee8f7.jpg" loading="lazy"></p>
-<blockquote>
-<p>如图所示 他引入了vue 那我们跟着他看看vue到底来自哪<br>结果TM居然跟了3，4次</p>
-</blockquote>
-</li>
-<li><p>最终在 <code>core/instance/index</code>下发现了真正的vue<br><img src="https://ftp.bmp.ovh/imgs/2021/01/4ed5b2f978190730.jpg" loading="lazy"></p>
-</li>
-</ol>
-<ul>
-<li>因为vue是一个构造函数 所以我们调用的时候要new一下 </li>
-</ul>
-<ol start="3">
-<li>他下面那些<code>initMixin</code>函数是干什么的呢?<br><img src="https://ftp.bmp.ovh/imgs/2021/01/e83d2a54e8c96408.jpg" loading="lazy"></li>
-</ol>
-<p>原来是在给vue的原型添加方法 由此可见 其实vue初始化的过程就是 每一个文件不断给vue添加原型方法或者自身的方法 为什么要这么做呢？ 因为vue要生成不同版本所以要分别对待</p>
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>koa的一个坑--cookie</title>
-    <url>/2021/01/08/node/koa%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91-cookie/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h4 id="关于koa里面使用cookie-or-session"><a href="#关于koa里面使用cookie-or-session" class="headerlink" title="关于koa里面使用cookie or session"></a>关于koa里面使用cookie or session</h4><ul>
-<li>前端如果用ajax <code>记得要设置允许跨域带cookie</code><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&#x27;#subdata&#x27;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                $.ajax(&#123;</span><br><span class="line">                    method:<span class="string">&quot;post&quot;</span>,</span><br><span class="line">                    url:<span class="string">&#x27;http://localhost:3000/admin/changeinfo&#x27;</span>,</span><br><span class="line">                    data:&#123;<span class="attr">id</span>:$(<span class="string">&quot;input[name=admin]&quot;</span>).val(),<span class="attr">name</span>:$(<span class="string">&#x27;input[name=name]&#x27;</span>).val(),<span class="attr">limit</span>:$(<span class="string">&quot;#status&quot;</span>).val()&#125;,</span><br><span class="line">                    dataType:<span class="string">&#x27;JSON&#x27;</span>,</span><br><span class="line">                    xhrFields: &#123;</span><br><span class="line">                      withCredentials: <span class="literal">true</span> <span class="comment">//允许跨域带Cookie</span></span><br><span class="line">                    &#125;,</span><br><span class="line">                    <span class="function"><span class="title">success</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">                        <span class="built_in">console</span>.log(data)</span><br><span class="line">                        layer.msg(<span class="string">&quot;修改成功&quot;</span>)</span><br><span class="line">                    &#125;,</span><br><span class="line">                    <span class="function"><span class="title">error</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                        alert(<span class="string">&#x27;服务器错误&#x27;</span>)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure></li>
-<li>后台如果用koa <code>Access-Control-Allow-Origin必须带域名 不能用*</code><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ctx.set(<span class="string">&quot;Access-Control-Allow-Origin&quot;</span>, <span class="string">&quot;http://localhost:8080&quot;</span>);</span><br><span class="line">ctx.set(<span class="string">&quot;Access-Control-Allow-Methods&quot;</span>, <span class="string">&quot;OPTIONS, GET, PUT, POST, DELETE&quot;</span>);</span><br><span class="line">ctx.set(<span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>, <span class="string">&#x27;x-requested-with, accept, origin, content-type&#x27;</span>);</span><br><span class="line">ctx.set(<span class="string">&#x27;Access-Control-Allow-Credentials&#x27;</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果Access-Control-Allow-Origin用*就会拿不到session</p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>node</category>
-      </categories>
-      <tags>
-        <tag>node</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tcp模拟http请求以及响应处理</title>
-    <url>/2021/01/27/node/tcp%E6%A8%A1%E6%8B%9Fhttp%E8%AF%B7%E6%B1%82%E4%BB%A5%E5%8F%8A%E5%93%8D%E5%BA%94%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<a id="more"></a>
-<ol>
-<li>模拟http请求</li>
-</ol>
-<ul>
-<li>其实 http无非就是一个 规范更加严格的tcp。他是一个一次性的，并且要求tcp对他说<code>GET /?aa=11 HTTP/1.1\r\n</code>之类的话，这样另一变的http服务器才会鸟他，所以下面用一个类来封装一下 tcp要对http说的话<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Request</span></span>&#123;</span><br><span class="line">    <span class="comment">//这个主要为了类等会用起来的时候会传来一些参数</span></span><br><span class="line">    <span class="comment">//把这些参数简单处理下</span></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">option</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.method = option.method || <span class="string">&quot;GET&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.host = option.host</span><br><span class="line">        <span class="built_in">this</span>.path = option.path || <span class="string">&quot;/&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.port = option.port || <span class="number">80</span>;</span><br><span class="line">        <span class="built_in">this</span>.body = option.body || &#123;&#125;;</span><br><span class="line">        <span class="built_in">this</span>.headers = option.headers || &#123;&#125;;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">this</span>.headers[<span class="string">&#x27;Content-Type&#x27;</span>])&#123;</span><br><span class="line">            <span class="built_in">this</span>.headers[<span class="string">&#x27;Content-Type&#x27;</span>] = <span class="string">&quot;application/x-www-from-urlencoded&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.headers[<span class="string">&#x27;Content-Type&#x27;</span>] == <span class="string">&quot;application/json&quot;</span>)&#123;</span><br><span class="line">            <span class="built_in">this</span>.bodyText = <span class="built_in">JSON</span>.stringify(<span class="built_in">this</span>.body)</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">this</span>.headers[<span class="string">&#x27;Content-Type&#x27;</span>] == <span class="string">&quot;application/x-www-from-urlencoded&quot;</span>)&#123;</span><br><span class="line">            <span class="built_in">this</span>.bodyText = <span class="built_in">Object</span>.keys(<span class="built_in">this</span>.body).map(<span class="function"><span class="params">key</span> =&gt;</span> <span class="string">`<span class="subst">$&#123;key&#125;</span>=<span class="subst">$&#123;<span class="built_in">this</span>.body[key]&#125;</span>`</span>).join(<span class="string">&quot;&amp;&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//我们处理完那些传来的参数就把他们拼起来，拼成http听得懂的话，</span></span><br><span class="line">    <span class="comment">//注意空格不能多加 不然 http就听不懂了</span></span><br><span class="line">    <span class="function"><span class="title">toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="built_in">this</span>.method&#125;</span> / HTTP/1.1\r</span></span><br><span class="line"><span class="string"><span class="subst">$&#123;<span class="built_in">Object</span>.keys(<span class="built_in">this</span>.headers).map(key =&gt; <span class="string">`<span class="subst">$&#123;key&#125;</span>:<span class="subst">$&#123;<span class="built_in">this</span>.headers[key]&#125;</span>`</span>).join(<span class="string">&quot;\r\n&quot;</span>)&#125;</span></span></span><br><span class="line"><span class="string">Content-Length:<span class="subst">$&#123;<span class="built_in">this</span>.bodyText.length&#125;</span>\r</span></span><br><span class="line"><span class="string">\r</span></span><br><span class="line"><span class="string"><span class="subst">$&#123;<span class="built_in">this</span>.bodyText&#125;</span>`</span>&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用node的net模块发送我们拼好的语句</span></span><br><span class="line">    <span class="function"><span class="title">send</span>(<span class="params">connect</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(connect)&#123;</span><br><span class="line">            connect.write(<span class="built_in">this</span>.toString())</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">// let res = new ResponseParser();</span></span><br><span class="line">            connect = net.createConnection(&#123;</span><br><span class="line">                host:<span class="built_in">this</span>.host,</span><br><span class="line">                port:<span class="built_in">this</span>.port</span><br><span class="line">            &#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">                connect.write(<span class="built_in">this</span>.toString());</span><br><span class="line">            &#125;)</span><br><span class="line">            connect.on(<span class="string">&quot;data&quot;</span>,<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="comment">// res.recive(data.toString())</span></span><br><span class="line">                    <span class="comment">// console.log(res.statusLine);</span></span><br><span class="line">                    connect.end();</span><br><span class="line">                &#125;)</span><br><span class="line">            connect.on(<span class="string">&quot;end&quot;</span>,<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&quot;断开连接&quot;</span>);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;发送成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>使用<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> net = <span class="built_in">require</span>(<span class="string">&#x27;net&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> req = <span class="keyword">new</span> Request(&#123;</span><br><span class="line">    method:<span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    port:<span class="number">8080</span>,</span><br><span class="line">    body:&#123;</span><br><span class="line">        name:<span class="string">&quot;eww11&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    headers:&#123;</span><br><span class="line">     [<span class="string">&quot;Content-Type&quot;</span>]:<span class="string">&quot;application/x-www-from-urlencoded&quot;</span>,</span><br><span class="line">     [<span class="string">&quot;X-Foo&quot;</span>]:<span class="string">&quot;qqqs&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></li>
-<li>服务器的那端headers会打印什么<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &#x27;content-type&#x27;: &#x27;application/x-www-from-urlencoded&#x27;,</span><br><span class="line">  &#x27;x-foo&#x27;: &#x27;qqqs&#x27;,</span><br><span class="line">  &#x27;content-length&#x27;: &#x27;10&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>我们从服务器那边得到什么<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type: text/plain;charset=utf-8</span><br><span class="line">access-control-allow-origin: *</span><br><span class="line">Date: Wed, 27 Jan 2021 10:27:41 GMT</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line"></span><br><span class="line">3</span><br><span class="line">aaa</span><br><span class="line">0</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>2.处理http响应(处理我们得到的东西)</p>
-<blockquote>
-<p>我们需要写一个记录状态的状态机(其实就是把字一个个抽离处理,遇到\r或者\n，我们就怎么怎么样，遇到header头我们怎么去处理)</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResponseParser</span></span>&#123;</span><br><span class="line">    <span class="comment">//字面意思，遇到不同的字符，都有一个数字对应</span></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.WAITING_STATUS_LINE = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">this</span>.WAITING_STATUS_LINE_END = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">this</span>.WAITING_HEADER_NAME = <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">this</span>.WAITING_HEADER_VALUE = <span class="number">3</span>;</span><br><span class="line">        <span class="built_in">this</span>.WAITING_HEADER_LINE_END = <span class="number">4</span>;</span><br><span class="line">        <span class="built_in">this</span>.WAITING_HEADER_BLOCK_END = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">this</span>.current = <span class="built_in">this</span>.WAITING_STATUS_LINE;</span><br><span class="line">        <span class="built_in">this</span>.statusLine = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.headers = &#123;&#125;;</span><br><span class="line">        <span class="built_in">this</span>.headerName = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.headerValue = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//把服务器发给我们的东西 一个个放入reciveChar()</span></span><br><span class="line">    <span class="function"><span class="title">recive</span>(<span class="params">string</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; string.length;i++)&#123;</span><br><span class="line">            <span class="built_in">this</span>.reciveChar(string.charAt(i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//根据不同的字符 来做不同的处理</span></span><br><span class="line">    <span class="function"><span class="title">reciveChar</span>(<span class="params">char</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//这里只写了一个if，其实上有好多if else,这段if就是读取response的第一段,遇到\r\n停下</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.current == <span class="built_in">this</span>.WAITING_STATUS_LINE)&#123;</span><br><span class="line">            <span class="keyword">if</span>(char == <span class="string">&#x27;\r&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">this</span>.current = <span class="built_in">this</span>.WAITING_HEADER_LINE_END;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(char == <span class="string">&#x27;\n&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">this</span>.current = <span class="built_in">this</span>.WAITING_HEADER_NAME</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">this</span>.statusLine += char;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> res = <span class="keyword">new</span> ResponseParser();</span><br><span class="line">            connect = net.createConnection(&#123;</span><br><span class="line">                host:<span class="built_in">this</span>.host,</span><br><span class="line">                port:<span class="built_in">this</span>.port</span><br><span class="line">            &#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">                connect.write(<span class="built_in">this</span>.toString());</span><br><span class="line">            &#125;)</span><br><span class="line">            connect.on(<span class="string">&quot;data&quot;</span>,<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">                    res.recive(data.toString())</span><br><span class="line">                    <span class="built_in">console</span>.log(res.statusLine); <span class="comment">//打印HTTP/1.1 200 OK</span></span><br><span class="line">                    connect.end();</span><br><span class="line">                &#125;)</span><br><span class="line">            connect.on(<span class="string">&quot;end&quot;</span>,<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&quot;断开连接&quot;</span>);</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure></li>
-<li>最终处理完成的结果<br><img src="https://ftp.bmp.ovh/imgs/2021/01/4946990e34cae97e.jpg" loading="lazy"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>node</category>
-      </categories>
-      <tags>
-        <tag>node</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>gee动态路由学习</title>
-    <url>/2021/04/08/go/gee%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%AD%A6%E4%B9%A0/</url>
+    <url>/blog/2021/04/08/go/gee%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h3 id="什么是动态路由"><a href="#什么是动态路由" class="headerlink" title="什么是动态路由"></a>什么是动态路由</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">   r.GET(<span class="string">&quot;/hello/:name&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gee.Context)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> k, v := <span class="keyword">range</span> c.Req.Header &#123;</span><br><span class="line">		fmt.Fprintf(c.Writer, <span class="string">&quot;Header[%q] = %q\n&quot;</span>, k, v)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">   r.Run(<span class="string">&quot;:9999&quot;</span>)</span><br></pre></td></tr></table></figure>
@@ -328,8 +88,108 @@
       </tags>
   </entry>
   <entry>
+    <title>unsafe.Sizeof</title>
+    <url>/blog/2022/02/24/go/unsafe-Sizeof/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h3 id="关于unsafe-Sizeof"><a href="#关于unsafe-Sizeof" class="headerlink" title="关于unsafe.Sizeof"></a>关于unsafe.Sizeof</h3><p><code>unsafe.Sizeof</code>用于获取某个结构的长度</p>
+<h4 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h4><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;unsafe&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a <span class="keyword">int</span> = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b <span class="keyword">bool</span> = <span class="literal">false</span></span><br><span class="line"><span class="keyword">var</span> c = [<span class="number">2</span>]<span class="keyword">rune</span>&#123;<span class="number">0x1F44</span>,<span class="number">0x1F42</span>&#125;</span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">string</span>&#123;<span class="number">1</span>:<span class="string">&quot;a&quot;</span>,<span class="number">2</span>:<span class="string">&quot;b&quot;</span>&#125; <span class="comment">//返回一个pointer 指向底层的map</span></span><br><span class="line"><span class="comment">// 4/8(32bit/64bit),1</span></span><br><span class="line">fmt.Println(unsafe.Sizeof(a),unsafe.Sizeof(b))</span><br><span class="line"><span class="comment">// 2 4 8 这里返回是每一个数组元素 长度和</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(c),unsafe.Sizeof(c[<span class="number">0</span>]),unsafe.Sizeof(c))</span><br><span class="line"><span class="comment">// 8</span></span><br><span class="line">fmt.Println(unsafe.Sizeof(d))</span><br></pre></td></tr></table></figure>
+<h4 id="特殊情况-string-slice等"><a href="#特殊情况-string-slice等" class="headerlink" title="特殊情况 (string,slice等)"></a>特殊情况 (string,slice等)</h4><ul>
+<li>由于这类数据类型由结构体作为底层，所以它返回结构体长度</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = []<span class="keyword">rune</span>&#123;<span class="number">0x1F44</span>,<span class="number">0x1F42</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">&quot;abc&quot;</span></span><br><span class="line"><span class="comment">// 24 16 (64bit)</span></span><br><span class="line">fmt.Println(unsafe.Sizeof(a),unsafe.Sizeof(b))</span><br></pre></td></tr></table></figure>
+<p>以下是两种类型的底层结构(<code>64bit</code>上结果)</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> slice <span class="keyword">struct</span> &#123;</span><br><span class="line">    array unsafe.Pointer <span class="comment">// 元素指针 8</span></span><br><span class="line">    <span class="built_in">len</span>   <span class="keyword">int</span> <span class="comment">// 长度 8</span></span><br><span class="line">    <span class="built_in">cap</span>   <span class="keyword">int</span> <span class="comment">// 容量 8</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 8+8+8 = 24</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> stringStruct <span class="keyword">struct</span> &#123;</span><br><span class="line">	str unsafe.Pointer <span class="comment">//8</span></span><br><span class="line">	<span class="built_in">len</span> <span class="keyword">int</span> <span class="comment">//8</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 8+8=16</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>GO</category>
+      </categories>
+      <tags>
+        <tag>GO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tcp模拟http请求以及响应处理</title>
+    <url>/blog/2021/01/27/node/tcp%E6%A8%A1%E6%8B%9Fhttp%E8%AF%B7%E6%B1%82%E4%BB%A5%E5%8F%8A%E5%93%8D%E5%BA%94%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<a id="more"></a>
+<ol>
+<li>模拟http请求</li>
+</ol>
+<ul>
+<li>其实 http无非就是一个 规范更加严格的tcp。他是一个一次性的，并且要求tcp对他说<code>GET /?aa=11 HTTP/1.1\r\n</code>之类的话，这样另一变的http服务器才会鸟他，所以下面用一个类来封装一下 tcp要对http说的话<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Request</span></span>&#123;</span><br><span class="line">    <span class="comment">//这个主要为了类等会用起来的时候会传来一些参数</span></span><br><span class="line">    <span class="comment">//把这些参数简单处理下</span></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">option</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.method = option.method || <span class="string">&quot;GET&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.host = option.host</span><br><span class="line">        <span class="built_in">this</span>.path = option.path || <span class="string">&quot;/&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.port = option.port || <span class="number">80</span>;</span><br><span class="line">        <span class="built_in">this</span>.body = option.body || &#123;&#125;;</span><br><span class="line">        <span class="built_in">this</span>.headers = option.headers || &#123;&#125;;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">this</span>.headers[<span class="string">&#x27;Content-Type&#x27;</span>])&#123;</span><br><span class="line">            <span class="built_in">this</span>.headers[<span class="string">&#x27;Content-Type&#x27;</span>] = <span class="string">&quot;application/x-www-from-urlencoded&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.headers[<span class="string">&#x27;Content-Type&#x27;</span>] == <span class="string">&quot;application/json&quot;</span>)&#123;</span><br><span class="line">            <span class="built_in">this</span>.bodyText = <span class="built_in">JSON</span>.stringify(<span class="built_in">this</span>.body)</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">this</span>.headers[<span class="string">&#x27;Content-Type&#x27;</span>] == <span class="string">&quot;application/x-www-from-urlencoded&quot;</span>)&#123;</span><br><span class="line">            <span class="built_in">this</span>.bodyText = <span class="built_in">Object</span>.keys(<span class="built_in">this</span>.body).map(<span class="function"><span class="params">key</span> =&gt;</span> <span class="string">`<span class="subst">$&#123;key&#125;</span>=<span class="subst">$&#123;<span class="built_in">this</span>.body[key]&#125;</span>`</span>).join(<span class="string">&quot;&amp;&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//我们处理完那些传来的参数就把他们拼起来，拼成http听得懂的话，</span></span><br><span class="line">    <span class="comment">//注意空格不能多加 不然 http就听不懂了</span></span><br><span class="line">    <span class="function"><span class="title">toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="built_in">this</span>.method&#125;</span> / HTTP/1.1\r</span></span><br><span class="line"><span class="string"><span class="subst">$&#123;<span class="built_in">Object</span>.keys(<span class="built_in">this</span>.headers).map(key =&gt; <span class="string">`<span class="subst">$&#123;key&#125;</span>:<span class="subst">$&#123;<span class="built_in">this</span>.headers[key]&#125;</span>`</span>).join(<span class="string">&quot;\r\n&quot;</span>)&#125;</span></span></span><br><span class="line"><span class="string">Content-Length:<span class="subst">$&#123;<span class="built_in">this</span>.bodyText.length&#125;</span>\r</span></span><br><span class="line"><span class="string">\r</span></span><br><span class="line"><span class="string"><span class="subst">$&#123;<span class="built_in">this</span>.bodyText&#125;</span>`</span>&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用node的net模块发送我们拼好的语句</span></span><br><span class="line">    <span class="function"><span class="title">send</span>(<span class="params">connect</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(connect)&#123;</span><br><span class="line">            connect.write(<span class="built_in">this</span>.toString())</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">// let res = new ResponseParser();</span></span><br><span class="line">            connect = net.createConnection(&#123;</span><br><span class="line">                host:<span class="built_in">this</span>.host,</span><br><span class="line">                port:<span class="built_in">this</span>.port</span><br><span class="line">            &#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">                connect.write(<span class="built_in">this</span>.toString());</span><br><span class="line">            &#125;)</span><br><span class="line">            connect.on(<span class="string">&quot;data&quot;</span>,<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="comment">// res.recive(data.toString())</span></span><br><span class="line">                    <span class="comment">// console.log(res.statusLine);</span></span><br><span class="line">                    connect.end();</span><br><span class="line">                &#125;)</span><br><span class="line">            connect.on(<span class="string">&quot;end&quot;</span>,<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&quot;断开连接&quot;</span>);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;发送成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> net = <span class="built_in">require</span>(<span class="string">&#x27;net&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> req = <span class="keyword">new</span> Request(&#123;</span><br><span class="line">    method:<span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    port:<span class="number">8080</span>,</span><br><span class="line">    body:&#123;</span><br><span class="line">        name:<span class="string">&quot;eww11&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    headers:&#123;</span><br><span class="line">     [<span class="string">&quot;Content-Type&quot;</span>]:<span class="string">&quot;application/x-www-from-urlencoded&quot;</span>,</span><br><span class="line">     [<span class="string">&quot;X-Foo&quot;</span>]:<span class="string">&quot;qqqs&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></li>
+<li>服务器的那端headers会打印什么<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &#x27;content-type&#x27;: &#x27;application/x-www-from-urlencoded&#x27;,</span><br><span class="line">  &#x27;x-foo&#x27;: &#x27;qqqs&#x27;,</span><br><span class="line">  &#x27;content-length&#x27;: &#x27;10&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>我们从服务器那边得到什么<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type: text/plain;charset=utf-8</span><br><span class="line">access-control-allow-origin: *</span><br><span class="line">Date: Wed, 27 Jan 2021 10:27:41 GMT</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line"></span><br><span class="line">3</span><br><span class="line">aaa</span><br><span class="line">0</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>2.处理http响应(处理我们得到的东西)</p>
+<blockquote>
+<p>我们需要写一个记录状态的状态机(其实就是把字一个个抽离处理,遇到\r或者\n，我们就怎么怎么样，遇到header头我们怎么去处理)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResponseParser</span></span>&#123;</span><br><span class="line">    <span class="comment">//字面意思，遇到不同的字符，都有一个数字对应</span></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.WAITING_STATUS_LINE = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">this</span>.WAITING_STATUS_LINE_END = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">this</span>.WAITING_HEADER_NAME = <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">this</span>.WAITING_HEADER_VALUE = <span class="number">3</span>;</span><br><span class="line">        <span class="built_in">this</span>.WAITING_HEADER_LINE_END = <span class="number">4</span>;</span><br><span class="line">        <span class="built_in">this</span>.WAITING_HEADER_BLOCK_END = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">this</span>.current = <span class="built_in">this</span>.WAITING_STATUS_LINE;</span><br><span class="line">        <span class="built_in">this</span>.statusLine = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.headers = &#123;&#125;;</span><br><span class="line">        <span class="built_in">this</span>.headerName = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.headerValue = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//把服务器发给我们的东西 一个个放入reciveChar()</span></span><br><span class="line">    <span class="function"><span class="title">recive</span>(<span class="params">string</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; string.length;i++)&#123;</span><br><span class="line">            <span class="built_in">this</span>.reciveChar(string.charAt(i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//根据不同的字符 来做不同的处理</span></span><br><span class="line">    <span class="function"><span class="title">reciveChar</span>(<span class="params">char</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//这里只写了一个if，其实上有好多if else,这段if就是读取response的第一段,遇到\r\n停下</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.current == <span class="built_in">this</span>.WAITING_STATUS_LINE)&#123;</span><br><span class="line">            <span class="keyword">if</span>(char == <span class="string">&#x27;\r&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">this</span>.current = <span class="built_in">this</span>.WAITING_HEADER_LINE_END;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(char == <span class="string">&#x27;\n&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">this</span>.current = <span class="built_in">this</span>.WAITING_HEADER_NAME</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">this</span>.statusLine += char;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> res = <span class="keyword">new</span> ResponseParser();</span><br><span class="line">            connect = net.createConnection(&#123;</span><br><span class="line">                host:<span class="built_in">this</span>.host,</span><br><span class="line">                port:<span class="built_in">this</span>.port</span><br><span class="line">            &#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">                connect.write(<span class="built_in">this</span>.toString());</span><br><span class="line">            &#125;)</span><br><span class="line">            connect.on(<span class="string">&quot;data&quot;</span>,<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">                    res.recive(data.toString())</span><br><span class="line">                    <span class="built_in">console</span>.log(res.statusLine); <span class="comment">//打印HTTP/1.1 200 OK</span></span><br><span class="line">                    connect.end();</span><br><span class="line">                &#125;)</span><br><span class="line">            connect.on(<span class="string">&quot;end&quot;</span>,<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&quot;断开连接&quot;</span>);</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure></li>
+<li>最终处理完成的结果<br><img src="https://ftp.bmp.ovh/imgs/2021/01/4946990e34cae97e.jpg" loading="lazy"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>node</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭node开发环境，不占C盘1MB</title>
+    <url>/blog/2022/07/25/node/%E6%90%ADnode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%EF%BC%8C%E4%B8%8D%E5%8D%A0C%E7%9B%981MB/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h3 id="安装nvm"><a href="#安装nvm" class="headerlink" title="安装nvm"></a>安装nvm</h3><p>这边建议使用，go语言写的nvm-windows</p>
+<blockquote>
+<p>url: <a href="https://github.com/coreybutler/nvm-windows">https://github.com/coreybutler/nvm-windows</a></p>
+</blockquote>
+<p>记住，exe启动选择的时候，都选自己喜欢的D盘或者别的盘的目录</p>
+<ul>
+<li>确认环境变量后,用<code>管理员权限</code>启动nvm，nvm proxy设置好代理，install node和use node</li>
+</ul>
+<p>最后,<code>node -v</code>检查</p>
+<h3 id="安装pnpm"><a href="#安装pnpm" class="headerlink" title="安装pnpm"></a>安装pnpm</h3><p><code>npm install -g pnpm</code>安装pnpm，之后，你会看到在nvm/&lt;node版本&gt;的目录下有个pnpm可执行文件,<code>pnpm -v</code>检查</p>
+<p>在环境变量添加<code>PNPM_HOME</code>,这里就是<code>nvm/&lt;node版本&gt;/</code>目录</p>
+<p>接下来，我们处理下pnpm的安装路径,<code>每一个都要，不然就放在C盘</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pnpm config <span class="built_in">set</span> store-dir <span class="string">&quot;D:\.pnpm-store&quot;</span>    <span class="comment"># pnpm全局仓库路径(类似 .git 仓库)</span></span><br><span class="line">pnpm config <span class="built_in">set</span> global-dir <span class="string">&quot;D:\nodejs\pnpm\pnpm-global&quot;</span>    <span class="comment"># pnpm全局安装路径</span></span><br><span class="line">pnpm config <span class="built_in">set</span> global-bin-dir <span class="string">&quot;D:\nodejs&quot;</span>    <span class="comment"># pnpm全局bin路径</span></span><br><span class="line">pnpm config <span class="built_in">set</span> state-dir <span class="string">&quot;D:\nodejs\pnpm&quot;</span>    <span class="comment"># pnpm创建pnpm-state.json文件的目录</span></span><br><span class="line">pnpm config <span class="built_in">set</span> cache-dir <span class="string">&quot;D:\nodejs\pnpm\cache&quot;</span>    <span class="comment"># pnpm全局缓存路径</span></span><br></pre></td></tr></table></figure>
+<p>如图所示，我这边建了个文件夹统一存放<br><img src="http://imgs-1304695318.cos.ap-shanghai.myqcloud.com/1658763468283.png" loading="lazy"></p>
+<p>最后，<code>pnpm i hexo-cli -g</code> 试一试吧</p>
+]]></content>
+      <categories>
+        <category>node</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>koa的一个坑--cookie</title>
+    <url>/blog/2021/01/08/node/koa%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91-cookie/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h4 id="关于koa里面使用cookie-or-session"><a href="#关于koa里面使用cookie-or-session" class="headerlink" title="关于koa里面使用cookie or session"></a>关于koa里面使用cookie or session</h4><ul>
+<li>前端如果用ajax <code>记得要设置允许跨域带cookie</code><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&#x27;#subdata&#x27;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                $.ajax(&#123;</span><br><span class="line">                    method:<span class="string">&quot;post&quot;</span>,</span><br><span class="line">                    url:<span class="string">&#x27;http://localhost:3000/admin/changeinfo&#x27;</span>,</span><br><span class="line">                    data:&#123;<span class="attr">id</span>:$(<span class="string">&quot;input[name=admin]&quot;</span>).val(),<span class="attr">name</span>:$(<span class="string">&#x27;input[name=name]&#x27;</span>).val(),<span class="attr">limit</span>:$(<span class="string">&quot;#status&quot;</span>).val()&#125;,</span><br><span class="line">                    dataType:<span class="string">&#x27;JSON&#x27;</span>,</span><br><span class="line">                    xhrFields: &#123;</span><br><span class="line">                      withCredentials: <span class="literal">true</span> <span class="comment">//允许跨域带Cookie</span></span><br><span class="line">                    &#125;,</span><br><span class="line">                    <span class="function"><span class="title">success</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">                        <span class="built_in">console</span>.log(data)</span><br><span class="line">                        layer.msg(<span class="string">&quot;修改成功&quot;</span>)</span><br><span class="line">                    &#125;,</span><br><span class="line">                    <span class="function"><span class="title">error</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                        alert(<span class="string">&#x27;服务器错误&#x27;</span>)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure></li>
+<li>后台如果用koa <code>Access-Control-Allow-Origin必须带域名 不能用*</code><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ctx.set(<span class="string">&quot;Access-Control-Allow-Origin&quot;</span>, <span class="string">&quot;http://localhost:8080&quot;</span>);</span><br><span class="line">ctx.set(<span class="string">&quot;Access-Control-Allow-Methods&quot;</span>, <span class="string">&quot;OPTIONS, GET, PUT, POST, DELETE&quot;</span>);</span><br><span class="line">ctx.set(<span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>, <span class="string">&#x27;x-requested-with, accept, origin, content-type&#x27;</span>);</span><br><span class="line">ctx.set(<span class="string">&#x27;Access-Control-Allow-Credentials&#x27;</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果Access-Control-Allow-Origin用*就会拿不到session</p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>node</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>python的一些学习</title>
-    <url>/2021/05/14/py/python%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0/</url>
+    <url>/blog/2021/05/14/py/python%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<a id="more"></a>
 <h3 id="python的一些学习"><a href="#python的一些学习" class="headerlink" title="python的一些学习"></a>python的一些学习</h3><ol>
 <li><p>关于pycharm里面引用<code>同级目录下的包</code>发生报错<br> <img src="http://imgs-1304695318.cos.ap-shanghai.myqcloud.com/1621000591058.png" loading="lazy"></p>
@@ -364,8 +224,119 @@
       </tags>
   </entry>
   <entry>
+    <title>socket大小端(一)</title>
+    <url>/blog/2021/07/27/socket/socket%E5%A4%A7%E5%B0%8F%E7%AB%AF(%E4%B8%80)/</url>
+    <content><![CDATA[<a id="more"></a>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><blockquote>
+<p>大端(BE)和小端(LE)的内存分布</p>
+</blockquote>
+<p><code>小端</code><br>|  内存地址   | 值  |<br>|  —-  | —-  |<br>| 0x3000[低位]  | 0x78[低位] |<br>| 0x3001  | 0x56 |<br>| 0x3002  | 0x34 |<br>| 0x3003[高位]  | 0x12[高位] |</p>
+<p><code>大端</code><br>|  内存地址   | 值  |<br>|  —-  | —-  |<br>| 0x3000[低位]  | 0x12[高位] |<br>| 0x3001  | 0x34 |<br>| 0x3002  | 0x56 |<br>| 0x3003[高位]  | 0x78[低位] |</p>
+<ul>
+<li>不同类型机器中，值在内存里摆放的方式，小端是低位对低位，端高位对低位，一般x86/amd64架构都是小端，一些老旧的苹果，以及sun服务器上用的大端</li>
+</ul>
+<h3 id="代码说明-基于node"><a href="#代码说明-基于node" class="headerlink" title="代码说明(基于node)"></a>代码说明(基于node)</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;Buffer&#125; = <span class="built_in">require</span>(<span class="string">&#x27;buffer&#x27;</span>);</span><br><span class="line"><span class="comment">// 一个buffer是一个Byte(字节)--&gt;8个0的位--&gt;8个比特</span></span><br><span class="line"><span class="keyword">const</span> buf = Buffer.allocUnsafe(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//写入300这个数（用大端的方式，所以内存低位存的是01（高位）），会用去2个Byte =&gt; 01 2c</span></span><br><span class="line">buf.writeInt16BE(<span class="number">300</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(buf); <span class="comment">//&lt;Buffer 01 2c f0 57 f4 01 00 00&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = buf.readInt8(<span class="number">0</span>) <span class="comment">//01</span></span><br><span class="line"><span class="keyword">let</span> b = buf.readInt8(<span class="number">1</span>) <span class="comment">//2c</span></span><br><span class="line"><span class="comment">//或等于</span></span><br><span class="line"><span class="comment">// 因为 300 这个数在内存中的位置是 0000 0000 0000 0000 0000 0001 0010 1100</span></span><br><span class="line"><span class="comment">// 所以 b 在内存中的位置是 0000 0000 0000 0000 0000 0000 0010 1100</span></span><br><span class="line"><span class="comment">// 然后 a 的位置是  0000 0000 0000 0000 0000 0000 0000 0001</span></span><br><span class="line"><span class="comment">// 现在我们只要把b的1往前面移动8个位就可以还原出300</span></span><br><span class="line">b |= a&lt;&lt;<span class="number">8</span></span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Socket</category>
+      </categories>
+      <tags>
+        <tag>Socket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue.js是如何build出来的</title>
+    <url>/blog/2021/01/04/vue/vue-js%E6%98%AF%E5%A6%82%E4%BD%95build%E5%87%BA%E6%9D%A5%E7%9A%84/</url>
+    <content><![CDATA[<a id="more"></a>
+<h3 id="vue-js-build的过程"><a href="#vue-js-build的过程" class="headerlink" title="vue.js build的过程"></a>vue.js build的过程</h3><p><img src="https://ftp.bmp.ovh/imgs/2021/01/b0937cb9478b042c.jpg" loading="lazy"></p>
+<ol>
+<li><p>在package.json里面发现他build的是 scripts/build.js</p>
+</li>
+<li><p>打开build.js 发现里面有步是获取所有配置<br><img src="https://ftp.bmp.ovh/imgs/2021/01/956ff7db951831eb.jpg" loading="lazy"></p>
+</li>
+<li><p>那么他是怎么用<code>getallbuilds()</code>获取所有配置的呢？<br><img src="https://ftp.bmp.ovh/imgs/2021/01/f2080bf5e2a18e9a.jpg" loading="lazy"></p>
+<blockquote>
+<p>如图所示 他将builds这个数组每一项都用getconfig这个函数来迭代<br>而上面的getconfig其实就是将作者自己写的这些”方言配置”转换成rollup这个打包插件听的懂的这些配置</p>
+</blockquote>
+</li>
+<li><p>拿到rollup配置项后 回到builds.js 他把这些配置项放进next里面迭代 buildEntry根据不同的配置来用下面write函数生成最终文件</p>
+</li>
+</ol>
+<p><img src="https://ftp.bmp.ovh/imgs/2021/01/081bd8123aaba40d.jpg" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue入口</title>
+    <url>/blog/2021/01/05/vue/vue%E5%85%A5%E5%8F%A3/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h3 id="入口文件解读"><a href="#入口文件解读" class="headerlink" title="入口文件解读"></a>入口文件解读</h3><ol>
+<li><p>我们先找一份vue Runtime + Compiler的入口看<br><img src="https://ftp.bmp.ovh/imgs/2021/01/c61ce6ffa3fee8f7.jpg" loading="lazy"></p>
+<blockquote>
+<p>如图所示 他引入了vue 那我们跟着他看看vue到底来自哪<br>结果TM居然跟了3，4次</p>
+</blockquote>
+</li>
+<li><p>最终在 <code>core/instance/index</code>下发现了真正的vue<br><img src="https://ftp.bmp.ovh/imgs/2021/01/4ed5b2f978190730.jpg" loading="lazy"></p>
+</li>
+</ol>
+<ul>
+<li>因为vue是一个构造函数 所以我们调用的时候要new一下 </li>
+</ul>
+<ol start="3">
+<li>他下面那些<code>initMixin</code>函数是干什么的呢?<br><img src="https://ftp.bmp.ovh/imgs/2021/01/e83d2a54e8c96408.jpg" loading="lazy"></li>
+</ol>
+<p>原来是在给vue的原型添加方法 由此可见 其实vue初始化的过程就是 每一个文件不断给vue添加原型方法或者自身的方法 为什么要这么做呢？ 因为vue要生成不同版本所以要分别对待</p>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>for_range</title>
+    <url>/blog/2022/02/25/go/for-range/</url>
+    <content><![CDATA[<h3 id="for-range与隐式作用域"><a href="#for-range与隐式作用域" class="headerlink" title="for_range与隐式作用域"></a>for_range与隐式作用域</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> m = [...]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,&#125;</span><br><span class="line"><span class="keyword">for</span> i,v := <span class="keyword">range</span> m &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//等价于以下代码</span></span><br><span class="line"><span class="keyword">var</span> m = [...]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,&#125;</span><br><span class="line">&#123;</span><br><span class="line">    i,v := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i,v := <span class="keyword">range</span> m &#123;</span><br><span class="line">    ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="for-range与变量副本-值类型"><a href="#for-range与变量副本-值类型" class="headerlink" title="for_range与变量副本(值类型)"></a>for_range与变量副本(值类型)</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">3</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"><span class="keyword">var</span> r = <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="number">3</span>)</span><br><span class="line">fmt.Println(a) <span class="comment">//[1,2,3]</span></span><br><span class="line"><span class="keyword">for</span> i, v := <span class="keyword">range</span> a &#123;</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span> &#123;</span><br><span class="line">        a[<span class="number">1</span>] = <span class="number">11</span></span><br><span class="line">        a[<span class="number">2</span>] = <span class="number">12</span></span><br><span class="line">    &#125;</span><br><span class="line">    r[i] = v</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//[1,2,3] 因为这里用的不是a，而是copy了一份a,进行迭代</span></span><br><span class="line">fmt.Println(r)</span><br><span class="line"><span class="comment">//[1,11,12]</span></span><br><span class="line">fmt.Println(a) </span><br><span class="line">fmt.Println(<span class="string">&quot;-----&quot;</span>)</span><br><span class="line">fmt.Println(a)</span><br><span class="line"><span class="comment">//注意这里和上面区别 这次改变了对应地址</span></span><br><span class="line"><span class="keyword">for</span> i, v := <span class="keyword">range</span> &amp;a &#123;</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span> &#123;</span><br><span class="line">        a[<span class="number">1</span>] += <span class="number">11</span></span><br><span class="line">        a[<span class="number">2</span>] += <span class="number">12</span></span><br><span class="line">    &#125;</span><br><span class="line">    r[i] = v</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//[1,22,24]</span></span><br><span class="line">fmt.Println(r)</span><br><span class="line"><span class="comment">//[1,22,24]</span></span><br><span class="line">fmt.Println(a)</span><br></pre></td></tr></table></figure>
+<h3 id="for-range与变量副本-指针类型"><a href="#for-range与变量副本-指针类型" class="headerlink" title="for_range与变量副本(指针类型)"></a>for_range与变量副本(指针类型)</h3><blockquote>
+<p>slice,map,channel 会直接改变原数据</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>GO</category>
+      </categories>
+      <tags>
+        <tag>GO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二叉树的各种遍历</title>
+    <url>/blog/2021/07/22/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/</url>
+    <content><![CDATA[<a id="more"></a>
+<h3 id="迭代方式"><a href="#迭代方式" class="headerlink" title="迭代方式"></a>迭代方式</h3><h4 id="中序（左-gt-中-gt-右）"><a href="#中序（左-gt-中-gt-右）" class="headerlink" title="中序（左-&gt;中-&gt;右）"></a>中序（左-&gt;中-&gt;右）</h4><blockquote>
+<p>整体思路是把左边的节点都push到stack里<br>然后再去判断它右边有没有节点，如果右边有节点，那再去找右边的左边，把右边的左边一直找到push到stack</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">inorderTraversal</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">	res := []<span class="keyword">int</span>&#123;&#125;</span><br><span class="line">	stack := []*TreeNode&#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//这一步为了把最左边那排元素放入stack</span></span><br><span class="line">	<span class="keyword">for</span> root != <span class="literal">nil</span> &#123;</span><br><span class="line">		stack = <span class="built_in">append</span>(stack, root)</span><br><span class="line">		root = root.Left</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">len</span>(stack) != <span class="number">0</span> &#123;</span><br><span class="line">		node := stack[<span class="built_in">len</span>(stack)<span class="number">-1</span>]</span><br><span class="line">		stack = stack[:<span class="built_in">len</span>(stack)<span class="number">-1</span>]</span><br><span class="line">		res = <span class="built_in">append</span>(res, node.Val)</span><br><span class="line">		node = node.Right</span><br><span class="line">		<span class="keyword">for</span> node != <span class="literal">nil</span> &#123;</span><br><span class="line">			stack = <span class="built_in">append</span>(stack, node)</span><br><span class="line">			node = node.Left</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="递归方式"><a href="#递归方式" class="headerlink" title="递归方式"></a>递归方式</h3><blockquote>
+<p>使用递归来遍历树，其实是用的一套模板，这里以前序为例，并且所谓前中后，分类依据是<code>root遍历的位置</code></p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inorderTraversal</span>(<span class="params">root: TreeNode | <span class="literal">null</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">   <span class="keyword">const</span> res = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> inorder = <span class="function">(<span class="params">root</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">		<span class="comment">//前序</span></span><br><span class="line">		res.push(root.val);</span><br><span class="line">        <span class="keyword">if</span>(root.left) inorder(root.left);</span><br><span class="line">		<span class="keyword">if</span>(root.right) inorder(root.right);</span><br><span class="line">        </span><br><span class="line">		<span class="comment">//中序</span></span><br><span class="line">        <span class="keyword">if</span>(root.left) inorder(root.left);</span><br><span class="line">		res.push(root.val);</span><br><span class="line">		<span class="keyword">if</span>(root.right) inorder(root.right);		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//后序</span></span><br><span class="line">        <span class="keyword">if</span>(root.left) inorder(root.left);</span><br><span class="line">		<span class="keyword">if</span>(root.right) inorder(root.right);</span><br><span class="line">		res.push(root.val);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    inorder(root);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>zinx_学习(1)</title>
-    <url>/2021/07/19/zinx/zinx-%E5%AD%A6%E4%B9%A0-1/</url>
+    <url>/blog/2021/07/19/zinx/zinx-%E5%AD%A6%E4%B9%A0-1/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h2 id="zinx0-3版本的收获"><a href="#zinx0-3版本的收获" class="headerlink" title="zinx0.3版本的收获"></a>zinx0.3版本的收获</h2><h4 id="关于面向接口编程"><a href="#关于面向接口编程" class="headerlink" title="关于面向接口编程"></a>关于面向接口编程</h4><ul>
@@ -389,103 +360,8 @@
       </tags>
   </entry>
   <entry>
-    <title>局外人</title>
-    <url>/2021/07/21/%E6%9D%82/%E5%B1%80%E5%A4%96%E4%BA%BA/</url>
-    <content><![CDATA[<p>对于世界，我们都是局外人</p>
-<a id="more"></a>
-
-<h3 id="一些感受"><a href="#一些感受" class="headerlink" title="一些感受"></a>一些感受</h3><p>花了3天时间看完了局外人，这本中篇我很久前看过开头，并没有读下去。现在回想起来，是作者过于冷峻的文笔，让我不太想读吧。</p>
-<p>作者加缪是个独特的天才，把世界看的过于真实了。主人公默尔索，对一切都不太在乎，爱人，可有可无;升官，可有可无。凭着感觉来生活，说是无欲无求好呢，还是对一切漠不关心呢。也许像是现代人的大多数，因为最终都是要归于沉寂死亡的，所以无论怎么活都无所谓了，因此人在这个世界永远是局外人，沧海一粟罢了。</p>
-<p>说实话，在我看来本文的核心感觉只有一个–冷。爱情无意义，婚姻无意义，葬礼无意义。因为最终都将归于死亡与虚空，没有什么是非有不可，也没有什么是不可失去</p>
-<p>既然一切无意义，我们大多数的生活方式却像是被固定好了一样–什么年纪该上学，什么年纪该结婚。所以，这么一想，世界和人都是挺荒诞的。莫名其妙的做着很多奇怪的事情。</p>
-<p>记得谁说过的，你一旦理解了人生“荒诞”感，你就再也回不去以前那种生活了–那种类似于”西西弗周而复始推滚石”般的奇怪生活。</p>
-<p>某种意义上来说，读完这本书，我的人生观或多或少也受到了一部分影响。只不过，有些东西我过去感受到过，现在更清晰了，做一个冷静的世界观察者，冷静而热情。</p>
-]]></content>
-      <categories>
-        <category>杂</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>二叉树的各种遍历</title>
-    <url>/2021/07/22/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/</url>
-    <content><![CDATA[<a id="more"></a>
-<h3 id="迭代方式"><a href="#迭代方式" class="headerlink" title="迭代方式"></a>迭代方式</h3><h4 id="中序（左-gt-中-gt-右）"><a href="#中序（左-gt-中-gt-右）" class="headerlink" title="中序（左-&gt;中-&gt;右）"></a>中序（左-&gt;中-&gt;右）</h4><blockquote>
-<p>整体思路是把左边的节点都push到stack里<br>然后再去判断它右边有没有节点，如果右边有节点，那再去找右边的左边，把右边的左边一直找到push到stack</p>
-</blockquote>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">inorderTraversal</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">	res := []<span class="keyword">int</span>&#123;&#125;</span><br><span class="line">	stack := []*TreeNode&#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//这一步为了把最左边那排元素放入stack</span></span><br><span class="line">	<span class="keyword">for</span> root != <span class="literal">nil</span> &#123;</span><br><span class="line">		stack = <span class="built_in">append</span>(stack, root)</span><br><span class="line">		root = root.Left</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">len</span>(stack) != <span class="number">0</span> &#123;</span><br><span class="line">		node := stack[<span class="built_in">len</span>(stack)<span class="number">-1</span>]</span><br><span class="line">		stack = stack[:<span class="built_in">len</span>(stack)<span class="number">-1</span>]</span><br><span class="line">		res = <span class="built_in">append</span>(res, node.Val)</span><br><span class="line">		node = node.Right</span><br><span class="line">		<span class="keyword">for</span> node != <span class="literal">nil</span> &#123;</span><br><span class="line">			stack = <span class="built_in">append</span>(stack, node)</span><br><span class="line">			node = node.Left</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="递归方式"><a href="#递归方式" class="headerlink" title="递归方式"></a>递归方式</h3><blockquote>
-<p>使用递归来遍历树，其实是用的一套模板，这里以前序为例，并且所谓前中后，分类依据是<code>root遍历的位置</code></p>
-</blockquote>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inorderTraversal</span>(<span class="params">root: TreeNode | <span class="literal">null</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">   <span class="keyword">const</span> res = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> inorder = <span class="function">(<span class="params">root</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">		<span class="comment">//前序</span></span><br><span class="line">		res.push(root.val);</span><br><span class="line">        <span class="keyword">if</span>(root.left) inorder(root.left);</span><br><span class="line">		<span class="keyword">if</span>(root.right) inorder(root.right);</span><br><span class="line">        </span><br><span class="line">		<span class="comment">//中序</span></span><br><span class="line">        <span class="keyword">if</span>(root.left) inorder(root.left);</span><br><span class="line">		res.push(root.val);</span><br><span class="line">		<span class="keyword">if</span>(root.right) inorder(root.right);		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//后序</span></span><br><span class="line">        <span class="keyword">if</span>(root.left) inorder(root.left);</span><br><span class="line">		<span class="keyword">if</span>(root.right) inorder(root.right);</span><br><span class="line">		res.push(root.val);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    inorder(root);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>二叉树</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>socket大小端(一)</title>
-    <url>/2021/07/27/socket/socket%E5%A4%A7%E5%B0%8F%E7%AB%AF(%E4%B8%80)/</url>
-    <content><![CDATA[<a id="more"></a>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><blockquote>
-<p>大端(BE)和小端(LE)的内存分布</p>
-</blockquote>
-<p><code>小端</code><br>|  内存地址   | 值  |<br>|  —-  | —-  |<br>| 0x3000[低位]  | 0x78[低位] |<br>| 0x3001  | 0x56 |<br>| 0x3002  | 0x34 |<br>| 0x3003[高位]  | 0x12[高位] |</p>
-<p><code>大端</code><br>|  内存地址   | 值  |<br>|  —-  | —-  |<br>| 0x3000[低位]  | 0x12[高位] |<br>| 0x3001  | 0x34 |<br>| 0x3002  | 0x56 |<br>| 0x3003[高位]  | 0x78[低位] |</p>
-<ul>
-<li>不同类型机器中，值在内存里摆放的方式，小端是低位对低位，端高位对低位，一般x86/amd64架构都是小端，一些老旧的苹果，以及sun服务器上用的大端</li>
-</ul>
-<h3 id="代码说明-基于node"><a href="#代码说明-基于node" class="headerlink" title="代码说明(基于node)"></a>代码说明(基于node)</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;Buffer&#125; = <span class="built_in">require</span>(<span class="string">&#x27;buffer&#x27;</span>);</span><br><span class="line"><span class="comment">// 一个buffer是一个Byte(字节)--&gt;8个0的位--&gt;8个比特</span></span><br><span class="line"><span class="keyword">const</span> buf = Buffer.allocUnsafe(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//写入300这个数（用大端的方式，所以内存低位存的是01（高位）），会用去2个Byte =&gt; 01 2c</span></span><br><span class="line">buf.writeInt16BE(<span class="number">300</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(buf); <span class="comment">//&lt;Buffer 01 2c f0 57 f4 01 00 00&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = buf.readInt8(<span class="number">0</span>) <span class="comment">//01</span></span><br><span class="line"><span class="keyword">let</span> b = buf.readInt8(<span class="number">1</span>) <span class="comment">//2c</span></span><br><span class="line"><span class="comment">//或等于</span></span><br><span class="line"><span class="comment">// 因为 300 这个数在内存中的位置是 0000 0000 0000 0000 0000 0001 0010 1100</span></span><br><span class="line"><span class="comment">// 所以 b 在内存中的位置是 0000 0000 0000 0000 0000 0000 0010 1100</span></span><br><span class="line"><span class="comment">// 然后 a 的位置是  0000 0000 0000 0000 0000 0000 0000 0001</span></span><br><span class="line"><span class="comment">// 现在我们只要把b的1往前面移动8个位就可以还原出300</span></span><br><span class="line">b |= a&lt;&lt;<span class="number">8</span></span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Socket</category>
-      </categories>
-      <tags>
-        <tag>Socket</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《潮骚》--东方古典之美</title>
-    <url>/2021/08/01/%E6%9D%82/%E3%80%8A%E6%BD%AE%E9%AA%9A%E3%80%8B-%E4%B8%9C%E6%96%B9%E5%8F%A4%E5%85%B8%E4%B9%8B%E7%BE%8E/</url>
-    <content><![CDATA[<p>小国寡民下的日式古典爱情之美</p>
-<a id="more"></a>
-
-<h3 id="一些感受"><a href="#一些感受" class="headerlink" title="一些感受"></a>一些感受</h3><p>《潮骚》这本书是在是太美好幸福了，简直不像是三岛写的。</p>
-<p>记得上一本看的三岛的书是《金阁寺》，各种黑暗的描写和各种奇怪的癖好，比如恋足癖什么的，还有一些毁灭美学的理解。真的让我不是很想读。</p>
-<p>真不由让人感慨，可能一个人能把“阴暗”理解的多深，他心中那片世外桃源就有多么的美好吧。</p>
-<p>《潮骚》的故事很有意思，其中最让我印象深刻的一点是，岛上的人们一切都是基于自然的，与自然和谐共生的。捕鱼，远航，一切都似乎受到了神灵的庇佑，这些在西方爱情中基本是很少出现的，这可能就是独属于东方的爱情吧。</p>
-<p>我们东方是顺应自然，而不是改造自然。同时，我们也有点迷信，寺庙，拜神佛，盼望新的一年风调雨顺，生活美好。故事发生地歌岛，远离城市喧嚣，感觉读这本书就像和男主新治与女主初江一起漫步歌岛一般。那种淳朴，但是不傻的幸福感包围着我。</p>
-<p>这本书的结构也很有意思，故事以灯塔送鱼以及神社求祝福开始，又在神社求祝福和灯塔送鱼中结束。而且每个人物的推进故事前进的比例是差不多的，这样就感觉歌岛这片大陆更加栩栩如生了。一方面为这份爱情的曲折前进做了铺垫，另一方面又渲染了这片大陆里的每一个生命的淳朴。</p>
-<p>这可真是一场让人心旷神怡的潮边漫步呀，潮骚–潮水涌动的感觉。</p>
-]]></content>
-      <categories>
-        <category>杂</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>兽性和人性--《面纱》</title>
-    <url>/2021/08/08/%E6%9D%82/%E5%85%BD%E6%80%A7%E5%92%8C%E4%BA%BA%E6%80%A7-%E3%80%8A%E9%9D%A2%E7%BA%B1%E3%80%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-<h4 id="一些感受"><a href="#一些感受" class="headerlink" title="一些感受"></a>一些感受</h4><p>大多数人戴着一层面纱维持着生活所谓的那些体面，面纱卸去是身体的性欲与让自己得到短暂刺激的欲望，这些欲望可以是钱，可以是某种不可告人的癖好。</p>
-<p>修道院的修女之所以看起来神圣，是因为她们远离的世俗，看起来彷佛在一座与世无争的精神病院一般。但是，显而易见，无论修女们在修道院呆多少年，一旦她们离开那里，回归尘世，兽性的欲望就会慢慢滋长，在电子浪潮的席卷下，彻底沦陷。</p>
-<p>我不愿意违背自己灵魂的初心，被兽性大发，矛盾的生活同化，所以还是让我孤独行走在通往文学之门的独木桥上吧。</p>
-]]></content>
-      <categories>
-        <category>杂</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>zinx-学习-2.md</title>
-    <url>/2021/08/12/zinx/zinx-%E5%AD%A6%E4%B9%A0-2/</url>
+    <url>/blog/2021/08/12/zinx/zinx-%E5%AD%A6%E4%B9%A0-2/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h2 id="zinx0-8的收获"><a href="#zinx0-8的收获" class="headerlink" title="zinx0.8的收获"></a>zinx0.8的收获</h2><h4 id="关于TCP拆包解包"><a href="#关于TCP拆包解包" class="headerlink" title="关于TCP拆包解包"></a>关于TCP拆包解包</h4><p>没什么好说的，自己基于此模拟了一套node的拆包封包，唯一缺点是没有写大小端<br><a href="https://gitee.com/tangqihang/node_tcp_demo">代码点这</a></p>
@@ -530,68 +406,192 @@
       </tags>
   </entry>
   <entry>
-    <title>unsafe.Sizeof</title>
-    <url>/2022/02/24/go/unsafe-Sizeof/</url>
-    <content><![CDATA[<a id="more"></a>
+    <title>frist</title>
+    <url>/blog/2020/12/29/%E6%9D%82/frist/</url>
+    <content><![CDATA[<p>简简单单</p>
+<a id="more"></a>
 
-<h3 id="关于unsafe-Sizeof"><a href="#关于unsafe-Sizeof" class="headerlink" title="关于unsafe.Sizeof"></a>关于unsafe.Sizeof</h3><p><code>unsafe.Sizeof</code>用于获取某个结构的长度</p>
-<h4 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h4><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;unsafe&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a <span class="keyword">int</span> = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b <span class="keyword">bool</span> = <span class="literal">false</span></span><br><span class="line"><span class="keyword">var</span> c = [<span class="number">2</span>]<span class="keyword">rune</span>&#123;<span class="number">0x1F44</span>,<span class="number">0x1F42</span>&#125;</span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">string</span>&#123;<span class="number">1</span>:<span class="string">&quot;a&quot;</span>,<span class="number">2</span>:<span class="string">&quot;b&quot;</span>&#125; <span class="comment">//返回一个pointer 指向底层的map</span></span><br><span class="line"><span class="comment">// 4/8(32bit/64bit),1</span></span><br><span class="line">fmt.Println(unsafe.Sizeof(a),unsafe.Sizeof(b))</span><br><span class="line"><span class="comment">// 2 4 8 这里返回是每一个数组元素 长度和</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(c),unsafe.Sizeof(c[<span class="number">0</span>]),unsafe.Sizeof(c))</span><br><span class="line"><span class="comment">// 8</span></span><br><span class="line">fmt.Println(unsafe.Sizeof(d))</span><br></pre></td></tr></table></figure>
-<h4 id="特殊情况-string-slice等"><a href="#特殊情况-string-slice等" class="headerlink" title="特殊情况 (string,slice等)"></a>特殊情况 (string,slice等)</h4><ul>
-<li>由于这类数据类型由结构体作为底层，所以它返回结构体长度</li>
+<h3 id="one"><a href="#one" class="headerlink" title="one"></a>one</h3><ul>
+<li>title: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:0<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = []<span class="keyword">rune</span>&#123;<span class="number">0x1F44</span>,<span class="number">0x1F42</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">&quot;abc&quot;</span></span><br><span class="line"><span class="comment">// 24 16 (64bit)</span></span><br><span class="line">fmt.Println(unsafe.Sizeof(a),unsafe.Sizeof(b))</span><br></pre></td></tr></table></figure>
-<p>以下是两种类型的底层结构(<code>64bit</code>上结果)</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> slice <span class="keyword">struct</span> &#123;</span><br><span class="line">    array unsafe.Pointer <span class="comment">// 元素指针 8</span></span><br><span class="line">    <span class="built_in">len</span>   <span class="keyword">int</span> <span class="comment">// 长度 8</span></span><br><span class="line">    <span class="built_in">cap</span>   <span class="keyword">int</span> <span class="comment">// 容量 8</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 8+8+8 = 24</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> stringStruct <span class="keyword">struct</span> &#123;</span><br><span class="line">	str unsafe.Pointer <span class="comment">//8</span></span><br><span class="line">	<span class="built_in">len</span> <span class="keyword">int</span> <span class="comment">//8</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 8+8=16</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>GO</category>
-      </categories>
-      <tags>
-        <tag>GO</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>for_range</title>
-    <url>/2022/02/25/go/for-range/</url>
-    <content><![CDATA[<h3 id="for-range与隐式作用域"><a href="#for-range与隐式作用域" class="headerlink" title="for_range与隐式作用域"></a>for_range与隐式作用域</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> m = [...]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,&#125;</span><br><span class="line"><span class="keyword">for</span> i,v := <span class="keyword">range</span> m &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//等价于以下代码</span></span><br><span class="line"><span class="keyword">var</span> m = [...]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,&#125;</span><br><span class="line">&#123;</span><br><span class="line">    i,v := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i,v := <span class="keyword">range</span> m &#123;</span><br><span class="line">    ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="for-range与变量副本-值类型"><a href="#for-range与变量副本-值类型" class="headerlink" title="for_range与变量副本(值类型)"></a>for_range与变量副本(值类型)</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">3</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"><span class="keyword">var</span> r = <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="number">3</span>)</span><br><span class="line">fmt.Println(a) <span class="comment">//[1,2,3]</span></span><br><span class="line"><span class="keyword">for</span> i, v := <span class="keyword">range</span> a &#123;</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span> &#123;</span><br><span class="line">        a[<span class="number">1</span>] = <span class="number">11</span></span><br><span class="line">        a[<span class="number">2</span>] = <span class="number">12</span></span><br><span class="line">    &#125;</span><br><span class="line">    r[i] = v</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//[1,2,3] 因为这里用的不是a，而是copy了一份a,进行迭代</span></span><br><span class="line">fmt.Println(r)</span><br><span class="line"><span class="comment">//[1,11,12]</span></span><br><span class="line">fmt.Println(a) </span><br><span class="line">fmt.Println(<span class="string">&quot;-----&quot;</span>)</span><br><span class="line">fmt.Println(a)</span><br><span class="line"><span class="comment">//注意这里和上面区别 这次改变了对应地址</span></span><br><span class="line"><span class="keyword">for</span> i, v := <span class="keyword">range</span> &amp;a &#123;</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span> &#123;</span><br><span class="line">        a[<span class="number">1</span>] += <span class="number">11</span></span><br><span class="line">        a[<span class="number">2</span>] += <span class="number">12</span></span><br><span class="line">    &#125;</span><br><span class="line">    r[i] = v</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//[1,22,24]</span></span><br><span class="line">fmt.Println(r)</span><br><span class="line"><span class="comment">//[1,22,24]</span></span><br><span class="line">fmt.Println(a)</span><br></pre></td></tr></table></figure>
-<h3 id="for-range与变量副本-指针类型"><a href="#for-range与变量副本-指针类型" class="headerlink" title="for_range与变量副本(指针类型)"></a>for_range与变量副本(指针类型)</h3><blockquote>
-<p>slice,map,channel 会直接改变原数据</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>GO</category>
-      </categories>
-      <tags>
-        <tag>GO</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>搭node开发环境，不占C盘1MB</title>
-    <url>/2022/07/25/node/%E6%90%ADnode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%EF%BC%8C%E4%B8%8D%E5%8D%A0C%E7%9B%981MB/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h3 id="安装nvm"><a href="#安装nvm" class="headerlink" title="安装nvm"></a>安装nvm</h3><p>这边建议使用，go语言写的nvm-windows</p>
-<blockquote>
-<p>url: <a href="https://github.com/coreybutler/nvm-windows">https://github.com/coreybutler/nvm-windows</a></p>
-</blockquote>
-<p>记住，exe启动选择的时候，都选自己喜欢的D盘或者别的盘的目录</p>
+<h3 id="two"><a href="#two" class="headerlink" title="two"></a>two</h3><p>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxxtitle: frist<br>date: 2020-12-29 10:08:01<br>tags: 随笔<br>description: xxxxxxx</p>
 <ul>
-<li>确认环境变量后,用<code>管理员权限</code>启动nvm，nvm proxy设置好代理，install node和use node</li>
+<li>weqwe<br><img src="http://p1.music.126.net/urGNzkRkLYYqU9sWVRvLfA==/109951164284564819.jpg?param=180y180" alt="这是图片" loading="lazy"></li>
 </ul>
-<p>最后,<code>node -v</code>检查</p>
-<h3 id="安装pnpm"><a href="#安装pnpm" class="headerlink" title="安装pnpm"></a>安装pnpm</h3><p><code>npm install -g pnpm</code>安装pnpm，之后，你会看到在nvm/&lt;node版本&gt;的目录下有个pnpm可执行文件,<code>pnpm -v</code>检查</p>
-<p>在环境变量添加<code>PNPM_HOME</code>,这里就是<code>nvm/&lt;node版本&gt;/</code>目录</p>
-<p>接下来，我们处理下pnpm的安装路径,<code>每一个都要，不然就放在C盘</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pnpm config <span class="built_in">set</span> store-dir <span class="string">&quot;D:\.pnpm-store&quot;</span>    <span class="comment"># pnpm全局仓库路径(类似 .git 仓库)</span></span><br><span class="line">pnpm config <span class="built_in">set</span> global-dir <span class="string">&quot;D:\nodejs\pnpm\pnpm-global&quot;</span>    <span class="comment"># pnpm全局安装路径</span></span><br><span class="line">pnpm config <span class="built_in">set</span> global-bin-dir <span class="string">&quot;D:\nodejs&quot;</span>    <span class="comment"># pnpm全局bin路径</span></span><br><span class="line">pnpm config <span class="built_in">set</span> state-dir <span class="string">&quot;D:\nodejs\pnpm&quot;</span>    <span class="comment"># pnpm创建pnpm-state.json文件的目录</span></span><br><span class="line">pnpm config <span class="built_in">set</span> cache-dir <span class="string">&quot;D:\nodejs\pnpm\cache&quot;</span>    <span class="comment"># pnpm全局缓存路径</span></span><br></pre></td></tr></table></figure>
-<p>如图所示，我这边建了个文件夹统一存放<br><img src="http://imgs-1304695318.cos.ap-shanghai.myqcloud.com/1658763468283.png" loading="lazy"></p>
-<p>最后，<code>pnpm i hexo-cli -g</code> 试一试吧</p>
-]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let a &#x3D; 1</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>node</category>
+        <category>杂</category>
       </categories>
       <tags>
-        <tag>node</tag>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《潮骚》--东方古典之美</title>
+    <url>/blog/2021/08/01/%E6%9D%82/%E3%80%8A%E6%BD%AE%E9%AA%9A%E3%80%8B-%E4%B8%9C%E6%96%B9%E5%8F%A4%E5%85%B8%E4%B9%8B%E7%BE%8E/</url>
+    <content><![CDATA[<p>小国寡民下的日式古典爱情之美</p>
+<a id="more"></a>
+
+<h3 id="一些感受"><a href="#一些感受" class="headerlink" title="一些感受"></a>一些感受</h3><p>《潮骚》这本书是在是太美好幸福了，简直不像是三岛写的。</p>
+<p>记得上一本看的三岛的书是《金阁寺》，各种黑暗的描写和各种奇怪的癖好，比如恋足癖什么的，还有一些毁灭美学的理解。真的让我不是很想读。</p>
+<p>真不由让人感慨，可能一个人能把“阴暗”理解的多深，他心中那片世外桃源就有多么的美好吧。</p>
+<p>《潮骚》的故事很有意思，其中最让我印象深刻的一点是，岛上的人们一切都是基于自然的，与自然和谐共生的。捕鱼，远航，一切都似乎受到了神灵的庇佑，这些在西方爱情中基本是很少出现的，这可能就是独属于东方的爱情吧。</p>
+<p>我们东方是顺应自然，而不是改造自然。同时，我们也有点迷信，寺庙，拜神佛，盼望新的一年风调雨顺，生活美好。故事发生地歌岛，远离城市喧嚣，感觉读这本书就像和男主新治与女主初江一起漫步歌岛一般。那种淳朴，但是不傻的幸福感包围着我。</p>
+<p>这本书的结构也很有意思，故事以灯塔送鱼以及神社求祝福开始，又在神社求祝福和灯塔送鱼中结束。而且每个人物的推进故事前进的比例是差不多的，这样就感觉歌岛这片大陆更加栩栩如生了。一方面为这份爱情的曲折前进做了铺垫，另一方面又渲染了这片大陆里的每一个生命的淳朴。</p>
+<p>这可真是一场让人心旷神怡的潮边漫步呀，潮骚–潮水涌动的感觉。</p>
+]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/blog/2020/12/28/%E6%9D%82/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>兽性和人性--《面纱》</title>
+    <url>/blog/2021/08/08/%E6%9D%82/%E5%85%BD%E6%80%A7%E5%92%8C%E4%BA%BA%E6%80%A7-%E3%80%8A%E9%9D%A2%E7%BA%B1%E3%80%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+<h4 id="一些感受"><a href="#一些感受" class="headerlink" title="一些感受"></a>一些感受</h4><p>大多数人戴着一层面纱维持着生活所谓的那些体面，面纱卸去是身体的性欲与让自己得到短暂刺激的欲望，这些欲望可以是钱，可以是某种不可告人的癖好。</p>
+<p>修道院的修女之所以看起来神圣，是因为她们远离的世俗，看起来彷佛在一座与世无争的精神病院一般。但是，显而易见，无论修女们在修道院呆多少年，一旦她们离开那里，回归尘世，兽性的欲望就会慢慢滋长，在电子浪潮的席卷下，彻底沦陷。</p>
+<p>我不愿意违背自己灵魂的初心，被兽性大发，矛盾的生活同化，所以还是让我孤独行走在通往文学之门的独木桥上吧。</p>
+]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>局外人</title>
+    <url>/blog/2021/07/21/%E6%9D%82/%E5%B1%80%E5%A4%96%E4%BA%BA/</url>
+    <content><![CDATA[<p>对于世界，我们都是局外人</p>
+<a id="more"></a>
+
+<h3 id="一些感受"><a href="#一些感受" class="headerlink" title="一些感受"></a>一些感受</h3><p>花了3天时间看完了局外人，这本中篇我很久前看过开头，并没有读下去。现在回想起来，是作者过于冷峻的文笔，让我不太想读吧。</p>
+<p>作者加缪是个独特的天才，把世界看的过于真实了。主人公默尔索，对一切都不太在乎，爱人，可有可无;升官，可有可无。凭着感觉来生活，说是无欲无求好呢，还是对一切漠不关心呢。也许像是现代人的大多数，因为最终都是要归于沉寂死亡的，所以无论怎么活都无所谓了，因此人在这个世界永远是局外人，沧海一粟罢了。</p>
+<p>说实话，在我看来本文的核心感觉只有一个–冷。爱情无意义，婚姻无意义，葬礼无意义。因为最终都将归于死亡与虚空，没有什么是非有不可，也没有什么是不可失去</p>
+<p>既然一切无意义，我们大多数的生活方式却像是被固定好了一样–什么年纪该上学，什么年纪该结婚。所以，这么一想，世界和人都是挺荒诞的。莫名其妙的做着很多奇怪的事情。</p>
+<p>记得谁说过的，你一旦理解了人生“荒诞”感，你就再也回不去以前那种生活了–那种类似于”西西弗周而复始推滚石”般的奇怪生活。</p>
+<p>某种意义上来说，读完这本书，我的人生观或多或少也受到了一部分影响。只不过，有些东西我过去感受到过，现在更清晰了，做一个冷静的世界观察者，冷静而热情。</p>
+]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>雪</title>
+    <url>/blog/2020/12/29/%E6%9D%82/%E9%9B%AA/</url>
+    <content><![CDATA[<p>来自远方的雪，从山头飒飒飘来。然后，然后就不知道写什么了。</p>
+<a id="more"></a>
+<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>来自远方的雪，从山头飒飒飘来。然后，然后就不知道写什么了。想起崔健的《蓝色的骨头》里面写的–男人越是闲着越是人缘好。 越是人缘好 让我情绪没有波动 就没有需要书写的情绪</p>
+<p>这就像是在毫无波动的海面，没有任何风暴一样。那样的海洋还是大海吗？但是充满暴风雨的海面虽然波澜壮阔，可不也害的许多船只与水手葬生海底嘛。</p>
+<p>对大海来说，他从不思考他将以何种形式存在。他任大自然在他心中随意缠绕。那我呢，是不是也该随着生活随缘的活着。</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p>今年听到了 万能青年旅馆这支乐队 太触动人心灵了。 姬赓的词 即继承了中国古典文学 又让欧美文学化为己用 描写了时代变迁带给一代河北人的迷茫。其实，也是这个时代的迷茫。我们沉陷在无垠的电子荒原。时尚的时代使人的敏感性变弱。<br>这也让我 明白了一点。所谓古风 如果不能古为今用 那么他在文学上价值不过是狗屁。在自我营造的感动中感受所谓的美，这毫无意义。<br>我们活在这个时代 在体值的囚笼下 我们的心灵感觉比“垮掉的一代”更加“垮掉”。从上世纪20年代开始 迷茫的一代 再到垮<br>掉的一代 到现在我们算是麻木的一代吗</p>
+<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>万能青年旅馆 应该可以在将来的历史里面 代表中国21世纪10年代的一代人的心灵情结。就如同 bob dylan代表的美国60年代美国人的心灵一样。姬赓的词确实有这个实力</p>
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p>雪还会下，盖住时代的视野。</p>
+]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ES6复习-promise</title>
+    <url>/blog/2021/01/01/js/promise/ES6%E5%A4%8D%E4%B9%A0-promise/</url>
+    <content><![CDATA[<a id="more"></a>
+<h2 id="响应多个promise"><a href="#响应多个promise" class="headerlink" title="响应多个promise"></a>响应多个promise</h2><h4 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h4>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">let</span> p1 =  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">res,rej</span>)</span>&#123;</span><br><span class="line">    res(<span class="number">22</span>)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> p2 = <span class="built_in">Promise</span>.resolve(<span class="number">55</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> p3 = <span class="built_in">Promise</span>.all([p1,p2]);  <span class="comment">//会等所有promise好了 再then</span></span><br><span class="line"></span><br><span class="line">  p3.then(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(val)); <span class="comment">//true</span></span><br><span class="line">    <span class="built_in">console</span>.log(val[<span class="number">0</span>],val[<span class="number">1</span>]); <span class="comment">//22 55</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h4>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 =  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">res,rej</span>)</span>&#123;</span><br><span class="line">  res(<span class="number">22</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p2 = <span class="built_in">Promise</span>.resolve(<span class="number">55</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p3 = <span class="built_in">Promise</span>.race([p1,p2]);  <span class="comment">//返回最先promise完的那个 race后面传入的promise顺序会影响结果</span></span><br><span class="line"></span><br><span class="line">p3.then(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(val)); <span class="comment">//false</span></span><br><span class="line">  <span class="built_in">console</span>.log(val); <span class="comment">//22</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>JS</category>
+      </categories>
+      <tags>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ES6复习-类</title>
+    <url>/blog/2020/12/30/js/%E7%B1%BB/ES6%E5%A4%8D%E4%B9%A0-%E7%B1%BB/</url>
+    <content><![CDATA[<a id="more"></a>
+<h3 id="关于ES6的类从ES5构造函数中继承"><a href="#关于ES6的类从ES5构造函数中继承" class="headerlink" title="关于ES6的类从ES5构造函数中继承"></a>关于ES6的类从ES5构造函数中继承</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> A = &#123;</span><br><span class="line">  <span class="function"><span class="title">sayA</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;a&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> B = &#123;</span><br><span class="line">  <span class="function"><span class="title">sayB</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;b&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mixin</span>(<span class="params">...mixins</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> base = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  <span class="built_in">Object</span>.assign(base.prototype,...mixins);</span><br><span class="line">  <span class="keyword">return</span> base;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> <span class="keyword">extends</span> <span class="title">mixin</span>(<span class="title">B</span>,<span class="title">A</span>)</span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">c</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">    <span class="built_in">this</span>.c = c</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c = <span class="keyword">new</span> C(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(c.sayA());</span><br></pre></td></tr></table></figure>
+<ol>
+<li>mixin函数是精髓，他通过Object.assign<code>拷贝源对象自身的并且可枚举的属性到目标对象</code><br>在base这个构造函数上 融合了A,B两个对象的所有可枚举方法 </li>
+<li>因为用了extends 所以要用super <code>super类似call的继承，super(11) 是种限定语法 super(11)会执行父类的constructor 然后把11传进去</code></li>
+<li>extends后面的构造函数必须有[[constructor]]属性 不然会报错</li>
+</ol>
+<h3 id="由对象派生数组"><a href="#由对象派生数组" class="headerlink" title="由对象派生数组"></a>由对象派生数组</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myarr</span> <span class="keyword">extends</span> <span class="title">Array</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> color = <span class="keyword">new</span> Myarr();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上面是ES6写法 没看懂ES5里面的问题 说派生类型的this再Array.apply之前先被调用了 所以length指向不准 </li>
+</ul>
+<h3 id="防止抽象类被new"><a href="#防止抽象类被new" class="headerlink" title="防止抽象类被new"></a>防止抽象类被new</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">new</span>.target === Shape)&#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;抽象类不能被实例化&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">extends</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">len,wid</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">super</span>()</span><br><span class="line">    <span class="built_in">this</span>.length = len;</span><br><span class="line">    <span class="built_in">this</span>.width = wid;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// let x = new Shape(); //抛错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> y = <span class="keyword">new</span> Rectangle(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(y <span class="keyword">instanceof</span> Shape);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>new.target</code> 总是能正确指向new他的那个类</li>
+</ul>
+]]></content>
+      <categories>
+        <category>JS</category>
+      </categories>
+      <tags>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ES6复习-数组</title>
+    <url>/blog/2020/12/30/js/%E6%95%B0%E7%BB%84/ES6%E5%A4%8D%E4%B9%A0-%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<a id="more"></a>
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><h3 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of"></a>Array.of</h3>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//ES5的痛 难以创建一个长度的数组 </span></span><br><span class="line"><span class="keyword">let</span> item = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(items.length); <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(items[<span class="number">0</span>]); <span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">let</span> A = <span class="built_in">Array</span>.of(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(A.length); <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(A[<span class="number">0</span>]); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Array.of方便创建单元素数组</p>
+<h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from"></a>Array.from</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> helper = &#123;</span><br><span class="line">  diff : <span class="number">1</span>,</span><br><span class="line">  <span class="function"><span class="title">add</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> val + <span class="built_in">this</span>.diff;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tran</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>); <span class="comment">//&#123; &#x27;0&#x27;: 1, &#x27;1&#x27;: 2, &#x27;2&#x27;: 5 &#125;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>,helper.add,helper) <span class="comment">//因为用到helper.diff所以 第三个参数改变this</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> numbers = tran(<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>);</span><br><span class="line"><span class="built_in">console</span>.log(numbers); <span class="comment">//[ 2, 3, 6 ]</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Array.from把类数组对象变成数组</p>
+</li>
+<li><p>Array.from 也可以转换迭代器对象<code>* [Symbol.iterator]</code></p>
+</li>
+</ul>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3>   <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> nums = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">122</span>,<span class="number">32</span>];</span><br><span class="line"><span class="built_in">console</span>.log(nums.find(<span class="function"><span class="params">a</span> =&gt;</span> a&gt;<span class="number">10</span>)); <span class="comment">//122</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>findIndex 同理 不过返回的是索引</p>
+<h3 id="fill"><a href="#fill" class="headerlink" title="fill"></a>fill</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">mums.fill(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(nums) <span class="comment">//[1,1,1]</span></span><br></pre></td></tr></table></figure></li>
+<li><p>替换数组每一项</p>
+<h3 id="copyWithin"><a href="#copyWithin" class="headerlink" title="copyWithin"></a>copyWithin</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">9</span>];</span><br><span class="line">nums.copyWithin(<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(nums); <span class="comment">//[ 1, 2, 1, 9 ]</span></span><br></pre></td></tr></table></figure></li>
+<li><p>从索引2(包括2)开始粘贴 从索引0开始复制 索引1结束复制</p>
+</li>
+</ul>
+<h2 id="定形数组"><a href="#定形数组" class="headerlink" title="定形数组"></a>定形数组</h2><h3 id="数组缓冲区"><a href="#数组缓冲区" class="headerlink" title="数组缓冲区"></a>数组缓冲区</h3>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">2</span>); <span class="comment">//这个Buffer共2字节</span></span><br><span class="line"><span class="built_in">console</span>.log(buffer.byteLength);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer) <span class="comment">//用来访问buffer</span></span><br><span class="line"><span class="built_in">console</span>.log(view.byteOffset);</span><br><span class="line"></span><br><span class="line">view.setInt8(<span class="number">0</span>,<span class="number">5</span>); <span class="comment">//框取一个8比特的位置 并且把5转换成8进制存入这个位置</span></span><br><span class="line">view.setInt8(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(view.getInt8(<span class="number">0</span>)); <span class="comment">//框取buffer中第一个8比特的位置 并且转换成10进制</span></span><br><span class="line"><span class="built_in">console</span>.log(view.getInt16(<span class="number">0</span>)); <span class="comment">//这个表示在内存中框16个比特 并且拿到框取的元素的第一个(也就是索引0)</span></span><br></pre></td></tr></table></figure>
+<h3 id="定形数组-1"><a href="#定形数组-1" class="headerlink" title="定形数组"></a>定形数组</h3><ul>
+<li><p>定型数组其实就是对<code>let view = new DataView(buffer)</code> 做了层封装 更加方便set(setInt8) 和 get 元素</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>(<span class="number">2</span>), <span class="comment">//框2个16byte的定型数组位置</span></span><br><span class="line">floats = <span class="keyword">new</span> <span class="built_in">Float32Array</span>([<span class="number">20.1</span>,<span class="number">33.3</span>]); <span class="comment">//框2个16byte的定型数组 索引0位置是20.1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(ints.byteLength); <span class="comment">//4</span></span><br><span class="line"><span class="built_in">console</span>.log(ints.length);</span><br><span class="line"><span class="built_in">console</span>.log(floats[<span class="number">1</span>]); <span class="comment">//33.29999923706055</span></span><br></pre></td></tr></table></figure></li>
+<li><p><code>console.log(ints.byteLength); //4</code> 因为每个int16元素表示2字节</p>
+<blockquote>
+<p>定型数组与普通数组上行为有很大差异 具体可以查 比如没有pop push 但他有set()方法可以添加元素 </p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ints = <span class="keyword">new</span> <span class="built_in">Int16Array</span>([<span class="number">222</span>,<span class="number">3</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(ints <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(ints)); <span class="comment">//false</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>JS</category>
+      </categories>
+      <tags>
+        <tag>JS</tag>
       </tags>
   </entry>
 </search>
