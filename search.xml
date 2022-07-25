@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>goruntine学习</title>
-    <url>/blog/2021/01/01/go/goruntine%E5%AD%A6%E4%B9%A0/</url>
+    <url>/hexo-blog/2021/01/01/go/goruntine%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h3 id="goruntine"><a href="#goruntine" class="headerlink" title="goruntine"></a>goruntine</h3><ol>
@@ -52,7 +52,7 @@
   </entry>
   <entry>
     <title>gee动态路由学习</title>
-    <url>/blog/2021/04/08/go/gee%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%AD%A6%E4%B9%A0/</url>
+    <url>/hexo-blog/2021/04/08/go/gee%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h3 id="什么是动态路由"><a href="#什么是动态路由" class="headerlink" title="什么是动态路由"></a>什么是动态路由</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">   r.GET(<span class="string">&quot;/hello/:name&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gee.Context)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> k, v := <span class="keyword">range</span> c.Req.Header &#123;</span><br><span class="line">		fmt.Fprintf(c.Writer, <span class="string">&quot;Header[%q] = %q\n&quot;</span>, k, v)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">   r.Run(<span class="string">&quot;:9999&quot;</span>)</span><br></pre></td></tr></table></figure>
@@ -89,7 +89,7 @@
   </entry>
   <entry>
     <title>unsafe.Sizeof</title>
-    <url>/blog/2022/02/24/go/unsafe-Sizeof/</url>
+    <url>/hexo-blog/2022/02/24/go/unsafe-Sizeof/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h3 id="关于unsafe-Sizeof"><a href="#关于unsafe-Sizeof" class="headerlink" title="关于unsafe.Sizeof"></a>关于unsafe.Sizeof</h3><p><code>unsafe.Sizeof</code>用于获取某个结构的长度</p>
@@ -110,7 +110,7 @@
   </entry>
   <entry>
     <title>tcp模拟http请求以及响应处理</title>
-    <url>/blog/2021/01/27/node/tcp%E6%A8%A1%E6%8B%9Fhttp%E8%AF%B7%E6%B1%82%E4%BB%A5%E5%8F%8A%E5%93%8D%E5%BA%94%E5%A4%84%E7%90%86/</url>
+    <url>/hexo-blog/2021/01/27/node/tcp%E6%A8%A1%E6%8B%9Fhttp%E8%AF%B7%E6%B1%82%E4%BB%A5%E5%8F%8A%E5%93%8D%E5%BA%94%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<a id="more"></a>
 <ol>
 <li>模拟http请求</li>
@@ -140,7 +140,7 @@
   </entry>
   <entry>
     <title>搭node开发环境，不占C盘1MB</title>
-    <url>/blog/2022/07/25/node/%E6%90%ADnode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%EF%BC%8C%E4%B8%8D%E5%8D%A0C%E7%9B%981MB/</url>
+    <url>/hexo-blog/2022/07/25/node/%E6%90%ADnode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%EF%BC%8C%E4%B8%8D%E5%8D%A0C%E7%9B%981MB/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h3 id="安装nvm"><a href="#安装nvm" class="headerlink" title="安装nvm"></a>安装nvm</h3><p>这边建议使用，go语言写的nvm-windows</p>
@@ -168,7 +168,7 @@
   </entry>
   <entry>
     <title>koa的一个坑--cookie</title>
-    <url>/blog/2021/01/08/node/koa%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91-cookie/</url>
+    <url>/hexo-blog/2021/01/08/node/koa%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91-cookie/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h4 id="关于koa里面使用cookie-or-session"><a href="#关于koa里面使用cookie-or-session" class="headerlink" title="关于koa里面使用cookie or session"></a>关于koa里面使用cookie or session</h4><ul>
@@ -189,7 +189,7 @@
   </entry>
   <entry>
     <title>python的一些学习</title>
-    <url>/blog/2021/05/14/py/python%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0/</url>
+    <url>/hexo-blog/2021/05/14/py/python%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<a id="more"></a>
 <h3 id="python的一些学习"><a href="#python的一些学习" class="headerlink" title="python的一些学习"></a>python的一些学习</h3><ol>
 <li><p>关于pycharm里面引用<code>同级目录下的包</code>发生报错<br> <img src="http://imgs-1304695318.cos.ap-shanghai.myqcloud.com/1621000591058.png" loading="lazy"></p>
@@ -225,7 +225,7 @@
   </entry>
   <entry>
     <title>socket大小端(一)</title>
-    <url>/blog/2021/07/27/socket/socket%E5%A4%A7%E5%B0%8F%E7%AB%AF(%E4%B8%80)/</url>
+    <url>/hexo-blog/2021/07/27/socket/socket%E5%A4%A7%E5%B0%8F%E7%AB%AF(%E4%B8%80)/</url>
     <content><![CDATA[<a id="more"></a>
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><blockquote>
 <p>大端(BE)和小端(LE)的内存分布</p>
@@ -245,7 +245,7 @@
   </entry>
   <entry>
     <title>vue.js是如何build出来的</title>
-    <url>/blog/2021/01/04/vue/vue-js%E6%98%AF%E5%A6%82%E4%BD%95build%E5%87%BA%E6%9D%A5%E7%9A%84/</url>
+    <url>/hexo-blog/2021/01/04/vue/vue-js%E6%98%AF%E5%A6%82%E4%BD%95build%E5%87%BA%E6%9D%A5%E7%9A%84/</url>
     <content><![CDATA[<a id="more"></a>
 <h3 id="vue-js-build的过程"><a href="#vue-js-build的过程" class="headerlink" title="vue.js build的过程"></a>vue.js build的过程</h3><p><img src="https://ftp.bmp.ovh/imgs/2021/01/b0937cb9478b042c.jpg" loading="lazy"></p>
 <ol>
@@ -272,7 +272,7 @@
   </entry>
   <entry>
     <title>vue入口</title>
-    <url>/blog/2021/01/05/vue/vue%E5%85%A5%E5%8F%A3/</url>
+    <url>/hexo-blog/2021/01/05/vue/vue%E5%85%A5%E5%8F%A3/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h3 id="入口文件解读"><a href="#入口文件解读" class="headerlink" title="入口文件解读"></a>入口文件解读</h3><ol>
@@ -301,7 +301,7 @@
   </entry>
   <entry>
     <title>for_range</title>
-    <url>/blog/2022/02/25/go/for-range/</url>
+    <url>/hexo-blog/2022/02/25/go/for-range/</url>
     <content><![CDATA[<h3 id="for-range与隐式作用域"><a href="#for-range与隐式作用域" class="headerlink" title="for_range与隐式作用域"></a>for_range与隐式作用域</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> m = [...]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,&#125;</span><br><span class="line"><span class="keyword">for</span> i,v := <span class="keyword">range</span> m &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//等价于以下代码</span></span><br><span class="line"><span class="keyword">var</span> m = [...]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,&#125;</span><br><span class="line">&#123;</span><br><span class="line">    i,v := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i,v := <span class="keyword">range</span> m &#123;</span><br><span class="line">    ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="for-range与变量副本-值类型"><a href="#for-range与变量副本-值类型" class="headerlink" title="for_range与变量副本(值类型)"></a>for_range与变量副本(值类型)</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">3</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"><span class="keyword">var</span> r = <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="number">3</span>)</span><br><span class="line">fmt.Println(a) <span class="comment">//[1,2,3]</span></span><br><span class="line"><span class="keyword">for</span> i, v := <span class="keyword">range</span> a &#123;</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span> &#123;</span><br><span class="line">        a[<span class="number">1</span>] = <span class="number">11</span></span><br><span class="line">        a[<span class="number">2</span>] = <span class="number">12</span></span><br><span class="line">    &#125;</span><br><span class="line">    r[i] = v</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//[1,2,3] 因为这里用的不是a，而是copy了一份a,进行迭代</span></span><br><span class="line">fmt.Println(r)</span><br><span class="line"><span class="comment">//[1,11,12]</span></span><br><span class="line">fmt.Println(a) </span><br><span class="line">fmt.Println(<span class="string">&quot;-----&quot;</span>)</span><br><span class="line">fmt.Println(a)</span><br><span class="line"><span class="comment">//注意这里和上面区别 这次改变了对应地址</span></span><br><span class="line"><span class="keyword">for</span> i, v := <span class="keyword">range</span> &amp;a &#123;</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span> &#123;</span><br><span class="line">        a[<span class="number">1</span>] += <span class="number">11</span></span><br><span class="line">        a[<span class="number">2</span>] += <span class="number">12</span></span><br><span class="line">    &#125;</span><br><span class="line">    r[i] = v</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//[1,22,24]</span></span><br><span class="line">fmt.Println(r)</span><br><span class="line"><span class="comment">//[1,22,24]</span></span><br><span class="line">fmt.Println(a)</span><br></pre></td></tr></table></figure>
 <h3 id="for-range与变量副本-指针类型"><a href="#for-range与变量副本-指针类型" class="headerlink" title="for_range与变量副本(指针类型)"></a>for_range与变量副本(指针类型)</h3><blockquote>
@@ -317,7 +317,7 @@
   </entry>
   <entry>
     <title>二叉树的各种遍历</title>
-    <url>/blog/2021/07/22/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/</url>
+    <url>/hexo-blog/2021/07/22/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/</url>
     <content><![CDATA[<a id="more"></a>
 <h3 id="迭代方式"><a href="#迭代方式" class="headerlink" title="迭代方式"></a>迭代方式</h3><h4 id="中序（左-gt-中-gt-右）"><a href="#中序（左-gt-中-gt-右）" class="headerlink" title="中序（左-&gt;中-&gt;右）"></a>中序（左-&gt;中-&gt;右）</h4><blockquote>
 <p>整体思路是把左边的节点都push到stack里<br>然后再去判断它右边有没有节点，如果右边有节点，那再去找右边的左边，把右边的左边一直找到push到stack</p>
@@ -336,7 +336,7 @@
   </entry>
   <entry>
     <title>zinx_学习(1)</title>
-    <url>/blog/2021/07/19/zinx/zinx-%E5%AD%A6%E4%B9%A0-1/</url>
+    <url>/hexo-blog/2021/07/19/zinx/zinx-%E5%AD%A6%E4%B9%A0-1/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h2 id="zinx0-3版本的收获"><a href="#zinx0-3版本的收获" class="headerlink" title="zinx0.3版本的收获"></a>zinx0.3版本的收获</h2><h4 id="关于面向接口编程"><a href="#关于面向接口编程" class="headerlink" title="关于面向接口编程"></a>关于面向接口编程</h4><ul>
@@ -361,7 +361,7 @@
   </entry>
   <entry>
     <title>zinx-学习-2.md</title>
-    <url>/blog/2021/08/12/zinx/zinx-%E5%AD%A6%E4%B9%A0-2/</url>
+    <url>/hexo-blog/2021/08/12/zinx/zinx-%E5%AD%A6%E4%B9%A0-2/</url>
     <content><![CDATA[<a id="more"></a>
 
 <h2 id="zinx0-8的收获"><a href="#zinx0-8的收获" class="headerlink" title="zinx0.8的收获"></a>zinx0.8的收获</h2><h4 id="关于TCP拆包解包"><a href="#关于TCP拆包解包" class="headerlink" title="关于TCP拆包解包"></a>关于TCP拆包解包</h4><p>没什么好说的，自己基于此模拟了一套node的拆包封包，唯一缺点是没有写大小端<br><a href="https://gitee.com/tangqihang/node_tcp_demo">代码点这</a></p>
@@ -407,7 +407,7 @@
   </entry>
   <entry>
     <title>frist</title>
-    <url>/blog/2020/12/29/%E6%9D%82/frist/</url>
+    <url>/hexo-blog/2020/12/29/%E6%9D%82/frist/</url>
     <content><![CDATA[<p>简简单单</p>
 <a id="more"></a>
 
@@ -428,7 +428,7 @@
   </entry>
   <entry>
     <title>《潮骚》--东方古典之美</title>
-    <url>/blog/2021/08/01/%E6%9D%82/%E3%80%8A%E6%BD%AE%E9%AA%9A%E3%80%8B-%E4%B8%9C%E6%96%B9%E5%8F%A4%E5%85%B8%E4%B9%8B%E7%BE%8E/</url>
+    <url>/hexo-blog/2021/08/01/%E6%9D%82/%E3%80%8A%E6%BD%AE%E9%AA%9A%E3%80%8B-%E4%B8%9C%E6%96%B9%E5%8F%A4%E5%85%B8%E4%B9%8B%E7%BE%8E/</url>
     <content><![CDATA[<p>小国寡民下的日式古典爱情之美</p>
 <a id="more"></a>
 
@@ -449,7 +449,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/blog/2020/12/28/%E6%9D%82/hello-world/</url>
+    <url>/hexo-blog/2020/12/28/%E6%9D%82/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -463,7 +463,7 @@
   </entry>
   <entry>
     <title>兽性和人性--《面纱》</title>
-    <url>/blog/2021/08/08/%E6%9D%82/%E5%85%BD%E6%80%A7%E5%92%8C%E4%BA%BA%E6%80%A7-%E3%80%8A%E9%9D%A2%E7%BA%B1%E3%80%8B/</url>
+    <url>/hexo-blog/2021/08/08/%E6%9D%82/%E5%85%BD%E6%80%A7%E5%92%8C%E4%BA%BA%E6%80%A7-%E3%80%8A%E9%9D%A2%E7%BA%B1%E3%80%8B/</url>
     <content><![CDATA[<a id="more"></a>
 <h4 id="一些感受"><a href="#一些感受" class="headerlink" title="一些感受"></a>一些感受</h4><p>大多数人戴着一层面纱维持着生活所谓的那些体面，面纱卸去是身体的性欲与让自己得到短暂刺激的欲望，这些欲望可以是钱，可以是某种不可告人的癖好。</p>
 <p>修道院的修女之所以看起来神圣，是因为她们远离的世俗，看起来彷佛在一座与世无争的精神病院一般。但是，显而易见，无论修女们在修道院呆多少年，一旦她们离开那里，回归尘世，兽性的欲望就会慢慢滋长，在电子浪潮的席卷下，彻底沦陷。</p>
@@ -478,7 +478,7 @@
   </entry>
   <entry>
     <title>局外人</title>
-    <url>/blog/2021/07/21/%E6%9D%82/%E5%B1%80%E5%A4%96%E4%BA%BA/</url>
+    <url>/hexo-blog/2021/07/21/%E6%9D%82/%E5%B1%80%E5%A4%96%E4%BA%BA/</url>
     <content><![CDATA[<p>对于世界，我们都是局外人</p>
 <a id="more"></a>
 
@@ -498,7 +498,7 @@
   </entry>
   <entry>
     <title>雪</title>
-    <url>/blog/2020/12/29/%E6%9D%82/%E9%9B%AA/</url>
+    <url>/hexo-blog/2020/12/29/%E6%9D%82/%E9%9B%AA/</url>
     <content><![CDATA[<p>来自远方的雪，从山头飒飒飘来。然后，然后就不知道写什么了。</p>
 <a id="more"></a>
 <h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>来自远方的雪，从山头飒飒飘来。然后，然后就不知道写什么了。想起崔健的《蓝色的骨头》里面写的–男人越是闲着越是人缘好。 越是人缘好 让我情绪没有波动 就没有需要书写的情绪</p>
@@ -517,7 +517,7 @@
   </entry>
   <entry>
     <title>ES6复习-promise</title>
-    <url>/blog/2021/01/01/js/promise/ES6%E5%A4%8D%E4%B9%A0-promise/</url>
+    <url>/hexo-blog/2021/01/01/js/promise/ES6%E5%A4%8D%E4%B9%A0-promise/</url>
     <content><![CDATA[<a id="more"></a>
 <h2 id="响应多个promise"><a href="#响应多个promise" class="headerlink" title="响应多个promise"></a>响应多个promise</h2><h4 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h4>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">let</span> p1 =  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">res,rej</span>)</span>&#123;</span><br><span class="line">    res(<span class="number">22</span>)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> p2 = <span class="built_in">Promise</span>.resolve(<span class="number">55</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> p3 = <span class="built_in">Promise</span>.all([p1,p2]);  <span class="comment">//会等所有promise好了 再then</span></span><br><span class="line"></span><br><span class="line">  p3.then(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(val)); <span class="comment">//true</span></span><br><span class="line">    <span class="built_in">console</span>.log(val[<span class="number">0</span>],val[<span class="number">1</span>]); <span class="comment">//22 55</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h4>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 =  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">res,rej</span>)</span>&#123;</span><br><span class="line">  res(<span class="number">22</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p2 = <span class="built_in">Promise</span>.resolve(<span class="number">55</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p3 = <span class="built_in">Promise</span>.race([p1,p2]);  <span class="comment">//返回最先promise完的那个 race后面传入的promise顺序会影响结果</span></span><br><span class="line"></span><br><span class="line">p3.then(<span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(val)); <span class="comment">//false</span></span><br><span class="line">  <span class="built_in">console</span>.log(val); <span class="comment">//22</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
@@ -530,7 +530,7 @@
   </entry>
   <entry>
     <title>ES6复习-类</title>
-    <url>/blog/2020/12/30/js/%E7%B1%BB/ES6%E5%A4%8D%E4%B9%A0-%E7%B1%BB/</url>
+    <url>/hexo-blog/2020/12/30/js/%E7%B1%BB/ES6%E5%A4%8D%E4%B9%A0-%E7%B1%BB/</url>
     <content><![CDATA[<a id="more"></a>
 <h3 id="关于ES6的类从ES5构造函数中继承"><a href="#关于ES6的类从ES5构造函数中继承" class="headerlink" title="关于ES6的类从ES5构造函数中继承"></a>关于ES6的类从ES5构造函数中继承</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> A = &#123;</span><br><span class="line">  <span class="function"><span class="title">sayA</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;a&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> B = &#123;</span><br><span class="line">  <span class="function"><span class="title">sayB</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;b&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mixin</span>(<span class="params">...mixins</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> base = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  <span class="built_in">Object</span>.assign(base.prototype,...mixins);</span><br><span class="line">  <span class="keyword">return</span> base;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> <span class="keyword">extends</span> <span class="title">mixin</span>(<span class="title">B</span>,<span class="title">A</span>)</span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">c</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">    <span class="built_in">this</span>.c = c</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c = <span class="keyword">new</span> C(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(c.sayA());</span><br></pre></td></tr></table></figure>
 <ol>
@@ -556,7 +556,7 @@
   </entry>
   <entry>
     <title>ES6复习-数组</title>
-    <url>/blog/2020/12/30/js/%E6%95%B0%E7%BB%84/ES6%E5%A4%8D%E4%B9%A0-%E6%95%B0%E7%BB%84/</url>
+    <url>/hexo-blog/2020/12/30/js/%E6%95%B0%E7%BB%84/ES6%E5%A4%8D%E4%B9%A0-%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<a id="more"></a>
 <h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><h3 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of"></a>Array.of</h3>  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//ES5的痛 难以创建一个长度的数组 </span></span><br><span class="line"><span class="keyword">let</span> item = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(items.length); <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(items[<span class="number">0</span>]); <span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">let</span> A = <span class="built_in">Array</span>.of(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(A.length); <span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(A[<span class="number">0</span>]); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
 <ul>
