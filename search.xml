@@ -579,6 +579,7 @@
 在shell中输入<br><code>tinygo flash -target=pico 1.go</code></li>
 </ol>
 <p>他会自动帮你把程序放入到PICO中，并且自动重启PICO</p>
+<p>你也可以使用<code>tinygo build -o aa.uf2 -target=pico 1.go</code>，手动放入<code>aa.uf2</code>，但是在这种情况下,每次更换新的<code>uf2</code>文件，就需要长按住PICO的boot按钮插入USB口</p>
 ]]></content>
       <categories>
         <category>杂</category>
